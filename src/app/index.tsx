@@ -1,14 +1,14 @@
-import {View,Text  } from 'react-native';
+import { TamaguiProvider, View, Text, Button } from "tamagui";
+import tamaguiConfig from "../../tamagui.config"; // Your config
 
-
-export default function HomeScreen() {
+export default function App() {
   return (
-   <View >
-    <Text>
-    Testing
-    </Text>
-   </View>
+    <TamaguiProvider config={tamaguiConfig}>
+      <View>
+        <Button size="50">
+          Testing
+        </Button>
+      </View>
+    </TamaguiProvider>
   );
 }
-
-

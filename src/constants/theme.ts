@@ -38,14 +38,15 @@ export const Colors = {
 
 export const Typography = {
   fontSizes: {
-   extraBold: "32px",
-   bold:"24px",
-   medium:"20px",
-   regular:"16px",
+    extraBold: "32px",
+    bold: "24px",
+    medium: "20px",
+    regular: "16px",
   },
-  fontweight:{
+  fontweight: {
     extrabold: "800",
     bold: "700",
+    semiBold: "600",
     medium: "500",
     regular: "400",
   },
