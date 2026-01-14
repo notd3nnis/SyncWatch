@@ -1,4 +1,4 @@
-import { createTokens, createTamagui, styled, Text } from "tamagui";
+import { createTokens, styled, SizableText } from "tamagui";
 
 // PALETTE
 const palette = {
@@ -42,25 +42,9 @@ const darkTheme = {
   accent: palette.yellowPrimary,
 };
 
-// TAMAGUI CONFIG
-const config = createTamagui({
-  tokens,
-  themes: {
-    dark: darkTheme,
-  },
-});
-
-type AppConfig = typeof config;
-declare module "tamagui" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  interface TamaguiCustomConfig extends AppConfig {}
-}
-
 // TYPOGRAPHY COMPONENTS
-
-export const Typography = styled(Text, {
+export const Typography = styled(SizableText, {
   color: "$color",
-
   variants: {
     variant: {
       h1: {
@@ -108,5 +92,4 @@ export const Typography = styled(Text, {
   },
 });
 
-export default config;
 export { palette, tokens, darkTheme };

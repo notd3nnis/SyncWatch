@@ -1,14 +1,15 @@
-import { TamaguiProvider, View, Button } from "tamagui";
-import tamaguiConfig from "../../tamagui.config"; // Your config
+import { TamaguiProvider, Theme } from "tamagui";
+import config from "@/tamagui.config";
+import { StatusBar } from "expo-status-bar";
+import { Typography } from "../constants/theme";
 
 export default function App() {
   return (
-    <TamaguiProvider config={tamaguiConfig}>
-      <View>
-        <Button size="20">
-          Testing the new button 
-        </Button>
-      </View>
+    <TamaguiProvider config={config}>
+      <Theme name="dark">
+        <StatusBar style="light" />
+        <Typography variant="body" weight="regular"></Typography>
+      </Theme>
     </TamaguiProvider>
-  )
+  );
 }

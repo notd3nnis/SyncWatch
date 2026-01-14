@@ -1,13 +1,18 @@
-import { config } from '@tamagui/config/v3';
-import { createTamagui } from 'tamagui';
+import { createTamagui } from "tamagui";
+import { tokens, darkTheme } from "@/src/constants/theme";
 
-const tamaguiConfig = createTamagui(config);
+const config = createTamagui({
+  tokens,
+  themes: {
+    dark: darkTheme,
+  },
+});
 
-export type Conf = typeof tamaguiConfig;
+type Conf = typeof config;
 
-declare module 'tamagui' {
+declare module "tamagui" {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface TamaguiCustomConfig extends Conf {}
 }
 
-export default tamaguiConfig; // Default export
+export default config;
