@@ -31,11 +31,11 @@
         }
       ],
       [
-      "expo-font",
-      {
-        "fonts": ["node_modules/@expo-google-fonts/dm-sans"]
-      }
-    ]
+        "expo-font",
+        {
+          "fonts": ["node_modules/@expo-google-fonts/dm-sans/"]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
