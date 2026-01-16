@@ -1,27 +1,26 @@
-import { Pressable, Text, View } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-
+import { Pressable, Text, View } from "react-native";
+import { styles } from "./styles";
 interface ButtonProps {
   children: string;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   icon?: React.ReactNode;
   onPress?: () => void;
   disabled?: boolean;
 }
 
-export function Button({
+function Button({
   children,
-  variant = 'primary',
+  variant = "primary",
   icon,
   onPress,
   disabled = false,
 }: ButtonProps) {
-    
-  const { styles } = useUnistyles(stylesheet, { variant });
-
+  styles.useVariants({
+    variant,
+  });
   return (
-    <Pressable 
-      onPress={onPress} 
+    <Pressable
+      onPress={onPress}
       disabled={disabled}
       style={({ pressed }) => [
         styles.container,
@@ -37,38 +36,4 @@ export function Button({
   );
 }
 
-const stylesheet = StyleSheet.create((theme) => ({
-  container: {
-    paddingVertical: theme.spacing.m,
-    paddingHorizontal: theme.spacing.l,
-    borderRadius: theme.radius.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    variants: {
-      variant: {
-        primary: {
-          backgroundColor: theme.color.primary,
-        },
-        secondary: {
-          backgroundColor: theme.color.secondary,
-        },
-      },
-    },
-  },
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.s,
-  },
-  text: {
-    color: theme.color.white,
-    fontSize: 15,
-    fontWeight: '600',
-  },
-  pressed: {
-    opacity: 0.8,
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-}));
+export default Button

@@ -1,5 +1,5 @@
-import { Text } from "react-native";
 import { useFonts } from "expo-font";
+import '@/src/constants/unistyles.config'
 import {
   DMSans_400Regular,
   DMSans_500Medium,
@@ -7,8 +7,9 @@ import {
   DMSans_700Bold,
   DMSans_800ExtraBold,
 } from "@expo-google-fonts/dm-sans";
+import Typography from "../components/Typography/index";
 
-export default function App() {
+export default function RootLayout () {
   const [fontsLoaded] = useFonts({
     "DM-Sans": DMSans_400Regular,
     "DM-Sans-Medium": DMSans_500Medium,
@@ -20,5 +21,5 @@ export default function App() {
   if (!fontsLoaded) {
     return null; // or a loading screen
   }
-  return <Text>Hi</Text>;
+  return <Typography tag="h1">This is my hew button </Typography>;
 }
