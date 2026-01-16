@@ -26,6 +26,7 @@ export const darkTheme = {
     l: 12,
     xl: 16,
   },
+
 } as const;
 
 export const breakpoints = {

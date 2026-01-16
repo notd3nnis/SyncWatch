@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/dm-sans";
 import Typography from "../components/Typography/index";
 
-export default function RootLayout () {
+export default function Index () {
   const [fontsLoaded] = useFonts({
     "DM-Sans": DMSans_400Regular,
     "DM-Sans-Medium": DMSans_500Medium,
