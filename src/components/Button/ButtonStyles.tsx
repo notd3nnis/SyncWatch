@@ -1,16 +1,37 @@
-import { styled, Stack } from "tamagui";
+// import { SizableText, styled, View } from "tamagui";
 
-export const CustomButton = styled(Stack, {
-  name: "Button",
+// export const ButtonContainer = styled(View, {
+//   variants: {
+//     variant: {
+//       primary: {
+//         backgroundColor: "$primary",
+//       },
+//       secondary: {
+//         backgroundColor: "$secondary",
+//       },
+//     },
+//   } as const,
 
-  display: "flex",
-  flexDirection: "row",
-  justify: "center",
-  verticalAlign: "middle",
+//   defaultVariants: {
+//     variant: "primary",
+//   },
+// });
 
+// export const ButtonText = styled(SizableText, {
+//   fontSize: "$body",
+//   fontWeight: 600,
+//   variants: {
+//     variant: {
+//       primary: {
+//         color: "$white",
+//       },
+//       secondary: {
+//         color: "$white",
+//       },
+//     },
+//   } as const,
 
-  variants: {
-    primary: {},
-    secondary: {},
-  },
-});
+//   defaultVariants: {
+//     variant: "primary",
+//   },
+// });

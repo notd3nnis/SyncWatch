@@ -1,56 +1,39 @@
-import { createTokens, createFont } from "tamagui";
+export const palette = {
+  pink01: "#FF007B",
+  purple01: "#7130F0",
+  black: "#000000",
+  white:'#ffff',
 
-// Font
-const DmSans = createFont({
-  family: "DM-Sans",
-  size: {
-    h1: 32,
-    h2: 24,
-    subHeading: 20,
-    body: 16,
-    smallBody: 14,
-    smallerBody: 12,
-    caption: 10,
-  },
-});
-// TOKENS
-const tokens = createTokens({
+};
+
+export const darkTheme = {
   color: {
-    pinkPrimary: "#FF007B",
-    purplePrimary: "#7130F0",
-    yellowPrimary: "#FEC500",
-
-    black: "#000000",
-    white: "#FFFFFF",
+    background: palette.black,
+    primary: palette.pink01,
+    secondary:palette.purple01
   },
-  space: {
+  spacing: {
+    xs: 4,
     s: 8,
     m: 16,
     l: 24,
     xl: 40,
-    true: 8,
-  },
-  size: {
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 40,
-    true: 8,
   },
   radius: {
-    0: 0,
-    1: 4,
-    2: 8,
-    3: 12,
-    4: 16,
-    true: 0,
+    xs:2,
+    s: 4,
+    m: 8,
+    l: 12,
+    xl: 16,
   },
-  zIndex: {
-    0: 0,
-    1: 100,
-    2: 200,
-    true: 0,
-  },
-});
+} as const;
 
-export { tokens, DmSans };
+export const breakpoints = {
+  xs: 0,
+  s: 576,
+  m: 768,
+  l: 992,
+  xl: 1200,
+  superLarge: 2000,
+  tvLike: 4000,
+} as const;

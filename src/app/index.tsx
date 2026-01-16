@@ -1,8 +1,5 @@
-import { TamaguiProvider } from "tamagui";
-import { config } from "@/tamagui.config";
-import { Typography } from "@/src/components/Typography";
+import { Text } from "react-native";
 import { useFonts } from "expo-font";
-
 import {
   DMSans_400Regular,
   DMSans_500Medium,
@@ -23,11 +20,5 @@ export default function App() {
   if (!fontsLoaded) {
     return null; // or a loading screen
   }
-  return (
-    <TamaguiProvider config={config} defaultTheme="dark">
-      <Typography variant="body" weight="medium" color="$color.purplePrimary">
-        Start a watch party and stay in cinematic sync with friends and family.
-      </Typography>
-    </TamaguiProvider>
-  );
+  return <Text>Hi</Text>;
 }
