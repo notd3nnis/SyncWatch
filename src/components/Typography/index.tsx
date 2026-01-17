@@ -8,20 +8,25 @@ type TypographyVariants = UnistylesVariants<typeof styles>;
 type TypographyProps = TextProps &
   TypographyVariants & {
     color?: string;
+    align?: string;
+    style?: any;
     children: React.ReactNode;
   };
 
 const Typography: React.FC<TypographyProps> = ({
   color,
-  tag,
+  variant,
+  align,
   weight,
   children,
+  style,
+  ...props
 }) => {
   styles.useVariants({
-    tag,
-    weight,
+    variant: variant,
+    weight: weight,
   });
-  return <Text style={styles.TextStyle(color)}>{children}</Text>;
+  return <Text {...props} style={[style,styles.TextStyle(color, align)]}>{children}</Text>;
 };
 
 export default Typography;

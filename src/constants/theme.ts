@@ -3,11 +3,13 @@ export const palette = {
   purple01: "#7130F0",
   black: "#000000",
   white: "#ffff",
+  gray01: "#171717",
 };
 
 export const darkTheme = {
   color: {
     background: palette.black,
+    backgroundLight: palette.gray01,
     primary: palette.pink01,
     secondary: palette.purple01,
     light: palette.white,
@@ -17,7 +19,8 @@ export const darkTheme = {
     s: 8,
     m: 16,
     l: 24,
-    xl: 40,
+    xl: 48,
+    xxl: 96,
   },
   radius: {
     xs: 2,
@@ -26,7 +29,15 @@ export const darkTheme = {
     l: 12,
     xl: 16,
   },
-
+  fontsize: {
+    xs: 10,
+    s: 12,
+    xm: 14,
+    m: 16,
+    l: 20,
+    xl: 24,
+    xxl: 32,
+  },
 } as const;
 
 export const breakpoints = {

@@ -1,4 +1,3 @@
-const path = require('path')
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -7,7 +6,8 @@ module.exports = function (api) {
       [
         'react-native-unistyles/plugin',
         {
-          root: path.dirname('src' ),
+          root: 'src',
+          autoProcessImports: ['react-native-unistyles'],
         },
       ],
       ["react-native-reanimated/plugin"],

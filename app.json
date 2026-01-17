@@ -6,16 +6,23 @@
     "orientation": "portrait",
     "icon": "./src/assets/images/appIcon.png",
     "scheme": "syncwatch",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0A0A",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.notd3nnis.SyncWatch"
+      "bundleIdentifier": "com.notd3nnis.SyncWatch",
+      "userInterfaceStyle": "dark"
     },
     "android": {
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.notd3nnis.SyncWatch"
+      "package": "com.notd3nnis.SyncWatch",
+      "userInterfaceStyle": "dark",
+      "statusBar": {
+        "barStyle": "light-content",
+        "backgroundColor": "#000000"
+      }
     },
     "web": {
       "output": "static"

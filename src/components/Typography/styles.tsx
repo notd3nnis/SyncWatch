@@ -1,37 +1,38 @@
 import { StyleSheet } from "react-native-unistyles";
 
 export const styles = StyleSheet.create((theme) => ({
-  TextStyle: (color) => ({
+  TextStyle: (color,align) => ({
     letterSpacing: 0.5,
     color: color ? color : theme.color.light,
+    textAlign: align? align:'left',
     variants: {
-      tag: {
+      variant: {
         h1: {
-          fontSize: 32,
+          fontSize: theme.fontsize.xxl,
           lineHeight: 40,
         },
         h2: {
-          fontSize: 24,
+          fontSize: theme.fontsize.xl,
           lineHeight: 32,
         },
         subHeading: {
-          fontSize: 20,
+          fontSize: theme.fontsize.l,
           lineHeight: 28,
         },
         body: {
-          fontSize: 16,
+          fontSize: theme.fontsize.m,
           lineHeight: 24,
         },
         smallBody: {
-          fontSize: 14,
+          fontSize: theme.fontsize.xm,
           lineHeight: 21,
         },
         smallerBody: {
-          fontSize: 12,
+          fontSize: theme.fontsize.s,
           lineHeight: 18,
         },
         caption: {
-          fontSize: 10,
+          fontSize: theme.fontsize.xs,
           lineHeight: 15,
         },
       },

@@ -1,2 +1,2 @@
-import './src/constants/unistyles.config'   // <-- your StyleSheet.configure(...) file
+import './src/constants/unistyles.config'  
 import 'expo-router/entry'
