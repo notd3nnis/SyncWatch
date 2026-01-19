@@ -5,7 +5,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import Button from "@/src/components/Button";
 import { GoogleLogo, OnboardingImgOne, AppleLogo } from "@/src/assets/svgs";
-import OnboardingSlides, { SlideData } from "@/src/components/OnboardingSlide";
+import OnboardingSlides from "@/src/components/OnboardingSlide";
+import { SlideData } from "../../components/OnboardingSlide/types"
+
 
 const onboardingData: SlideData[] = [
   {
