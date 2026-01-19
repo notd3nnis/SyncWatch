@@ -4,6 +4,7 @@ export const palette = {
   black: "#0A0A0A",
   white: "#FFFFFF",
   gray01: "#171717",
+  gray02: "#737373",
 };
 
 export const darkTheme = {
@@ -13,6 +14,7 @@ export const darkTheme = {
     primary: palette.pink01,
     secondary: palette.purple01,
     white: palette.white,
+    gray02: palette.gray02,
   },
   spacing: {
     xs: 4,

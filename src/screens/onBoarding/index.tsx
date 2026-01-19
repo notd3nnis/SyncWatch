@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { styles } from "./styles";
 import Button from "@/src/components/Button";
 import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
-import {onboardingData} from "../../utils/dummyDatas"
-
+import { onboardingData } from "../../utils/dummyDatas";
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,35 +49,3 @@ export default function Onboarding() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.color.background,
-  },
-  bottomSection: {
-    paddingHorizontal: theme.spacing.l,
-    marginBottom: theme.spacing.l,
-    gap: theme.spacing.l,
-  },
-  pagination: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: theme.spacing.s,
-  },
-  dot: {
-    width: 8,
-    height: 10,
-    borderRadius: theme.radius.s,
-    backgroundColor: theme.color.backgroundLight,
-  },
-  dotActive: {
-    width: 40,
-    backgroundColor: theme.color.white,
-    borderRadius: theme.radius.l,
-  },
-  buttonGroup: {
-    gap: theme.spacing.m,
-  },
-}));
