@@ -2,7 +2,7 @@ export const palette = {
   pink01: "#FF007B",
   purple01: "#7130F0",
   black: "#0A0A0A",
-  white: "#ffff",
+  white: "#FFFFFF",
   gray01: "#171717",
 };
 
