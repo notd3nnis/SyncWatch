@@ -1,24 +1,18 @@
 import React, { useEffect } from "react";
 import { View, Dimensions } from "react-native";
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  useAnimatedScrollHandler,
-  interpolate,
-  SharedValue,
+useSharedValue,
+useAnimatedScrollHandler,
 } from "react-native-reanimated";
+import  SlideItem  from "./slideItem";
+import { SlideData } from "./types";
 
-import Typography from "../Typography";
+
 import { styles } from "./styles";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-export interface SlideData {
-  id: number;
-  title: string;
-  description: string;
-  image: React.ReactNode;
-}
+
 
 interface OnboardingSlidesProps {
   slides: SlideData[];
@@ -91,58 +85,6 @@ export default function OnboardingSlides({
           />
         ))}
       </Animated.ScrollView>
-    </View>
-  );
-}
-
-// Individual Slide Item Component
-interface SlideItemProps {
-  slide: SlideData;
-  index: number;
-  scrollX: SharedValue<number>;
-}
-
-function SlideItem({ slide, index, scrollX }: SlideItemProps) {
-  const animatedStyle = useAnimatedStyle(() => {
-    const inputRange = [
-      (index - 1) * SCREEN_WIDTH,
-      index * SCREEN_WIDTH,
-      (index + 1) * SCREEN_WIDTH,
-    ];
-
-    const scale = interpolate(
-      scrollX.value,
-      inputRange,
-      [0.8, 1, 0.8],
-      "clamp",
-    );
-
-    const opacity = interpolate(
-      scrollX.value,
-      inputRange,
-      [0.5, 1, 0.5],
-      "clamp",
-    );
-
-    return {
-      transform: [{ scale }],
-      opacity,
-    };
-  });
-
-  return (
-    <View style={styles.slideContainer}>
-      <Animated.View style={[styles.imageSection, animatedStyle]}>
-        <View style={styles.imageFrame}>{slide.image}</View>
-      </Animated.View>
-      <View style={styles.textSection}>
-        <Typography variant="h2" weight="bold" align="center">
-          {slide.title}
-        </Typography>
-        <Typography variant="smallBody" weight="medium" align="center">
-          {slide.description}
-        </Typography>
-      </View>
     </View>
   );
 }
