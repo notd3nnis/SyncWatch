@@ -4,26 +4,10 @@ import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Button from "@/src/components/Button";
-import { GoogleLogo, OnboardingImgOne, AppleLogo } from "@/src/assets/svgs";
+import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
-import { SlideData } from "../../components/OnboardingSlide/types"
+import {onboardingData} from "../../utils/dummyDatas"
 
-
-const onboardingData: SlideData[] = [
-  {
-    id: 1,
-    title: "Watch together. In sync.",
-    description:
-      "Start a watch party and stay in cinematic sync with friends & family.",
-    image: <OnboardingImgOne />,
-  },
-  {
-    id: 2,
-    title: "One tap. Everyone's in!",
-    description: "Start the movie, chat live, & react in real time.",
-    image: <OnboardingImgOne />,
-  },
-];
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
