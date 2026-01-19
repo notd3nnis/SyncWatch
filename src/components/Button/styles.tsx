@@ -24,11 +24,6 @@ export const styles = StyleSheet.create((theme) => ({
     alignItems: "center",
     gap: theme.spacing.s,
   },
-  text: {
-    color: theme.color.light,
-    fontSize: 15,
-    fontWeight: "600",
-  },
   pressed: {
     opacity: 0.8,
   },

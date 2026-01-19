@@ -1,12 +1,7 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View, } from "react-native";
 import { styles } from "./styles";
-interface ButtonProps {
-  children: string;
-  variant?: "primary" | "secondary";
-  icon?: React.ReactNode;
-  onPress?: () => void;
-  disabled?: boolean;
-}
+import Typography from "../Typography";
+import { CustomButtonProps } from "./types";
 
 function Button({
   children,
@@ -14,7 +9,7 @@ function Button({
   icon,
   onPress,
   disabled = false,
-}: ButtonProps) {
+}: CustomButtonProps) {
   styles.useVariants({
     variant,
   });
@@ -30,10 +25,10 @@ function Button({
     >
       <View style={styles.content}>
         {icon && icon}
-        <Text style={styles.text}>{children}</Text>
+        <Typography variant="body" weight="medium">{children}</Typography>
       </View>
     </Pressable>
   );
 }
 
-export default Button
+export default Button;
