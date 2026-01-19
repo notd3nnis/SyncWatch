@@ -21,7 +21,7 @@
       "userInterfaceStyle": "dark",
       "statusBar": {
         "barStyle": "light-content",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#0A0A0A"
       }
     },
     "web": {

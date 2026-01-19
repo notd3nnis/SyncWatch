@@ -1,37 +1,66 @@
-import React from "react";
-import { View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Button from "@/src/components/Button";
-import Typography from "@/src/components/Typography";
-import OnboardingSlide from "@/src/components/OnboardingSlide";
 import { GoogleLogo, OnboardingImgOne, AppleLogo } from "@/src/assets/svgs";
+import OnboardingSlides, { SlideData } from "@/src/components/OnboardingSlide";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+const onboardingData: SlideData[] = [
+  {
+    id: 1,
+    title: "Watch together. In sync.",
+    description:
+      "Start a watch party and stay in cinematic sync with friends and family.",
+    image: <OnboardingImgOne />,
+  },
+  {
+    id: 2,
+    title: "Watch together. In sync.",
+    description:
+      "Start a watch party and stay in cinematic sync with friends and family.",
+    image: <OnboardingImgOne />,
+  },
+];
 
 export default function Onboarding() {
+  const [currentIndex, setCurrentIndex] = useState(0);
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
-      <OnboardingSlide
-        title="Watch together. In sync."
-        description="Start a watch party and stay in cinematic sync with friends and family."
-        image={<OnboardingImgOne />}
+    <SafeAreaView style={styles.container}>
+      <OnboardingSlides
+        slides={onboardingData}
+        autoSlideInterval={3000} // 3 seconds
+        currentIndex={currentIndex}
+        onIndexChange={setCurrentIndex}
+        onSlideChange={(index) => index}
       />
-
       <View style={styles.bottomSection}>
         <View style={styles.pagination}>
-          <View style={[styles.dot, styles.dotActive]} />
-          <View style={styles.dot} />
-          <View style={styles.dot} />
+          {onboardingData.map((_, index) => (
+            <View
+              key={index}
+              style={[styles.dot, currentIndex === index && styles.dotActive]}
+            />
+          ))}
         </View>
-      </View>
-      <View style={styles.buttonGroup}>
-        <Button icon={<AppleLogo />}>Continue with Apple</Button>
+        <View style={styles.buttonGroup}>
+          <Button
+            title="appleLogo"
+            icon={<AppleLogo width={20} height={20} />}
+            variant="primary"
+          >
+            Continue with Apple
+          </Button>
 
-        <Button icon={<GoogleLogo />} variant="secondary">
-          Continue with Google
-        </Button>
+          <Button
+            title="googleLogo"
+            icon={<GoogleLogo width={20} height={20} />}
+            variant="secondary"
+          >
+            Continue with Google
+          </Button>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -44,7 +73,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   bottomSection: {
     paddingHorizontal: theme.spacing.l,
-    paddingBottom: theme.spacing.l,
+    marginBottom: theme.spacing.l,
     gap: theme.spacing.l,
   },
   pagination: {
@@ -55,15 +84,16 @@ const styles = StyleSheet.create((theme) => ({
   },
   dot: {
     width: 8,
-    height: 8,
-    borderRadius: theme.radius.m,
+    height: 10,
+    borderRadius: theme.radius.s,
     backgroundColor: theme.color.backgroundLight,
   },
   dotActive: {
-    width: 30,
-    backgroundColor: theme.color.light,
+    width: 40,
+    backgroundColor: theme.color.white,
+    borderRadius: theme.radius.l,
   },
   buttonGroup: {
-    gap: theme.spacing.l,
+    gap: theme.spacing.m,
   },
 }));

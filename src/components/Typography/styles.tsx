@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native-unistyles";
 
 export const styles = StyleSheet.create((theme) => ({
-  TextStyle: (color,align) => ({
+  TextStyle: (color, align) => ({
+    fontFamily: "DM-Sans",
     letterSpacing: 0.5,
-    color: color ? color : theme.color.light,
-    textAlign: align? align:'left',
+    color: color ? color : theme.color.white,
+    textAlign: align ? align : "left",
     variants: {
       variant: {
         h1: {
@@ -37,11 +38,11 @@ export const styles = StyleSheet.create((theme) => ({
         },
       },
       weight: {
-        regular: { fontWeight: "400" },
-        medium: { fontWeight: "500" },
-        semibold: { fontWeight: "600" },
-        bold: { fontWeight: "700" },
-        extrabold: { fontWeight: "800" },
+        regular: { fontFamily: "DMSans-Regular" },
+        medium: { fontFamily: "DMSans-Medium" },
+        semibold: { fontFamily: "DMSans-SemiBold" },
+        bold: { fontFamily: "DMSans-Bold" },
+        extrabold: { fontFamily: "DMSans-ExtraBold" },
       } as const,
     },
   }),
