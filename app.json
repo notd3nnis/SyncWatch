@@ -4,17 +4,21 @@
     "slug": "SyncWatch",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/appIcon.png",
     "scheme": "syncwatch",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#0A0A0A",
     "newArchEnabled": true,
     "ios": {
+      "icon": "./src/assets/images/Icons/AppleIcon.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.notd3nnis.SyncWatch",
       "userInterfaceStyle": "dark"
     },
     "android": {
+      "adaptiveIcon": {
+    "foregroundImage": "./src/assets/images/Icons/AndroidIcon.png", 
+    "backgroundColor": "#0A0A0A"
+      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.notd3nnis.SyncWatch",
