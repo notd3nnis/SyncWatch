@@ -8,11 +8,10 @@ import {
   DMSans_600SemiBold,
   DMSans_700Bold,
   DMSans_800ExtraBold,
-  
 } from "@expo-google-fonts/dm-sans";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import Onboarding from "../screens/onBoarding";
+import SelectProvider from "../screens/SelectProvider";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,8 +35,8 @@ export default function Index() {
   }
   return (
     <SafeAreaProvider>
-      <StatusBar style="light"/>
-      <Onboarding />
+      <StatusBar style="light" />
+      <SelectProvider />
     </SafeAreaProvider>
   );
 }

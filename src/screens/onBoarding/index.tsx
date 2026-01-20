@@ -1,30 +1,12 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { styles } from "./styles";
 import Button from "@/src/components/Button";
-import { GoogleLogo, OnboardingImgOne, AppleLogo } from "@/src/assets/svgs";
+import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
-import { SlideData } from "../../components/OnboardingSlide/types"
-
-
-const onboardingData: SlideData[] = [
-  {
-    id: 1,
-    title: "Watch together. In sync.",
-    description:
-      "Start a watch party and stay in cinematic sync with friends and family.",
-    image: <OnboardingImgOne />,
-  },
-  {
-    id: 2,
-    title: "Watch together. In sync.",
-    description:
-      "Start a watch party and stay in cinematic sync with friends and family.",
-    image: <OnboardingImgOne />,
-  },
-];
+import { onboardingData } from "../../utils/dummyDatas";
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,35 +49,3 @@ export default function Onboarding() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.color.background,
-  },
-  bottomSection: {
-    paddingHorizontal: theme.spacing.l,
-    marginBottom: theme.spacing.l,
-    gap: theme.spacing.l,
-  },
-  pagination: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: theme.spacing.s,
-  },
-  dot: {
-    width: 8,
-    height: 10,
-    borderRadius: theme.radius.s,
-    backgroundColor: theme.color.backgroundLight,
-  },
-  dotActive: {
-    width: 40,
-    backgroundColor: theme.color.white,
-    borderRadius: theme.radius.l,
-  },
-  buttonGroup: {
-    gap: theme.spacing.m,
-  },
-}));
