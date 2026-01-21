@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { styles } from "./styles";
-import Button from "@/src/components/Button";
+import Button from "@/src/components/common/Button";
 import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
 import { onboardingData } from "../../utils/dummyDatas";

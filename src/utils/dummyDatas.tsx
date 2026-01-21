@@ -22,7 +22,6 @@ type selectProviderType = {
   id: number;
   logo: ReactNode;
   title: string;
-  // handleSelect: (x: boolean) => void;
 };
 export const selectProviderData: selectProviderType[] = [
   {

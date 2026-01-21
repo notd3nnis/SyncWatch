@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native-unistyles";
 
-export const styles = StyleSheet.create((theme) => ({
+export const styles = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.color.background,
+    paddingBottom: rt.insets.bottom,
   },
   bottomSection: {
     paddingHorizontal: theme.spacing.l,

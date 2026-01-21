@@ -1,7 +1,8 @@
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import { StyleSheet } from "react-native-unistyles";
 import {
   DMSans_400Regular,
   DMSans_500Medium,
@@ -10,7 +11,6 @@ import {
   DMSans_800ExtraBold,
 } from "@expo-google-fonts/dm-sans";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import SelectProvider from "../screens/SelectProvider";
 
 SplashScreen.preventAutoHideAsync();
@@ -34,9 +34,16 @@ export default function Index() {
     return null;
   }
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.container}>
       <StatusBar style="light" />
       <SelectProvider />
     </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create((theme) => ({
+  container: {
+    backgroundColor: theme.color.background,
+    flex: 1,
+  },
+}));

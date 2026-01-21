@@ -3,8 +3,8 @@ import { styles } from "./styles";
 import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Logo } from "@/src/assets/svgs";
-import Button from "@/src/components/Button";
-import Typography from "@/src/components/Typography";
+import Button from "@/src/components/common/Button";
+import Typography from "@/src/components/common/Typography";
 import { selectProviderData } from "@/src/utils/dummyDatas";
 
 

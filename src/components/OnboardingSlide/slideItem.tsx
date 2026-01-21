@@ -3,7 +3,7 @@ useAnimatedStyle,
 interpolate,
 } from "react-native-reanimated";
 import { View, Dimensions } from "react-native";
-import Typography from "../Typography";
+import Typography from "../common/Typography";
 import { SlideItemProps } from "./types"
 import { styles } from "./styles";
 
