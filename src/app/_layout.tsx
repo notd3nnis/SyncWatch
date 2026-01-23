@@ -8,6 +8,7 @@ import {
   DMSans_600SemiBold,
   DMSans_700Bold,
   DMSans_800ExtraBold,
+  DMSans_900Black,
 } from "@expo-google-fonts/dm-sans";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
@@ -21,6 +22,7 @@ export default function Index() {
     "DM-Sans-SemiBold": DMSans_600SemiBold,
     "DM-Sans-Bold": DMSans_700Bold,
     "DM-Sans-ExtraBold": DMSans_800ExtraBold,
+    "DMSans_xxBold": DMSans_900Black,
   });
 
   useEffect(() => {
@@ -31,7 +33,6 @@ export default function Index() {
 
   if (!loaded && !error) {
     return null;
-
   }
   return (
     <SafeAreaProvider>
@@ -47,6 +48,13 @@ export default function Index() {
           options={{ gestureEnabled: false }}
         />
         <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
+        <Stack.Screen
+          name="create-party/[id]"
+          options={{
+            presentation: "modal",
+            animation: "slide_from_bottom",
+          }}
+        />
       </Stack>
     </SafeAreaProvider>
   );

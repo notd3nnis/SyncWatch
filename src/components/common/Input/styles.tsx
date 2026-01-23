@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native-unistyles";
 
 export const styles = StyleSheet.create((theme) => ({
   wrapper: {
-    gap: theme.spacing.m,
+    // gap: theme.spacing.m,
   },
   label: {
     color: theme.color.white,

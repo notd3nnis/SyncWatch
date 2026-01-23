@@ -1,9 +1,11 @@
 export const palette = {
   pink01: "#FF007B",
   purple01: "#7130F0",
-  white: "#FFFFFF",
   red: "EF5350",
   black: "#0A0A0A",
+
+  white01: "#FFFFFF",
+  white02: "#E5E5E5",
 
   gray01: "#171717",
   gray02: "#737373",
@@ -17,7 +19,8 @@ export const darkTheme = {
     backgroundLight: palette.gray01,
     primary: palette.pink01,
     secondary: palette.purple01,
-    white: palette.white,
+    white: palette.white01,
+    whiteLight: palette.white02,
     textMuted: palette.gray04,
     error: palette.red,
 
