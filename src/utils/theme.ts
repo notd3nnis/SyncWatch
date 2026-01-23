@@ -1,10 +1,14 @@
 export const palette = {
   pink01: "#FF007B",
   purple01: "#7130F0",
-  black: "#0A0A0A",
   white: "#FFFFFF",
+  red: "EF5350",
+  black: "#0A0A0A",
+
   gray01: "#171717",
   gray02: "#737373",
+  gray03: "#262626",
+  gray04: "#A3A3A3",
 };
 
 export const darkTheme = {
@@ -14,7 +18,11 @@ export const darkTheme = {
     primary: palette.pink01,
     secondary: palette.purple01,
     white: palette.white,
+    textMuted: palette.gray04,
+    error: palette.red,
+
     gray02: palette.gray02,
+    gray03: palette.gray03,
   },
   spacing: {
     xs: 4,

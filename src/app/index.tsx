@@ -11,7 +11,7 @@ import {
   DMSans_800ExtraBold,
 } from "@expo-google-fonts/dm-sans";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import SelectProvider from "../screens/SelectProvider";
+import HomePage from "../screens/homePage";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,7 +36,7 @@ export default function Index() {
   return (
     <SafeAreaProvider style={styles.container}>
       <StatusBar style="light" />
-      <SelectProvider />
+      <HomePage />
     </SafeAreaProvider>
   );
 }

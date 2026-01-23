@@ -2,7 +2,7 @@ import { useState } from "react";
 import { styles } from "./styles";
 import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Logo } from "@/src/assets/svgs";
+import { AppLogo } from "@/src/assets/svgs";
 import Button from "@/src/components/common/Button";
 import Typography from "@/src/components/common/Typography";
 import { selectProviderData } from "@/src/utils/dummyDatas";
@@ -13,11 +13,11 @@ const SelectProvider = () => {
 const [selectedId, setSelectedId] = useState<number | null>(null);
 
 return (
-  <SafeAreaView style={styles.container}>
+  <SafeAreaView style={styles.container} >
     <View>
       <View style={styles.headerContainer}>
         <View style={styles.logoWrapper}>
-          <Logo />
+          <AppLogo />
         </View>
         <Typography variant="subHeading" weight="medium">
           syncwatch
