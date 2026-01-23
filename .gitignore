@@ -3,6 +3,10 @@
 # dependencies
 node_modules/
 
+
+#dev settings
+settings.json
+
 # Expo
 .expo/
 dist/

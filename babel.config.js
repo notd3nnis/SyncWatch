@@ -1,15 +1,16 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: ["babel-preset-expo"],
     plugins: [
       [
-        '@tamagui/babel-plugin',
+        'react-native-unistyles/plugin',
         {
-          components: ['tamagui'],
-          config: './tamagui.config.ts',
+          root: 'src',
+          autoProcessImports: ['react-native-unistyles'],
         },
       ],
+      ["react-native-reanimated/plugin"],
     ],
   };
 };
