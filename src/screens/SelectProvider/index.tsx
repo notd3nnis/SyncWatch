@@ -7,8 +7,6 @@ import Button from "@/src/components/common/Button";
 import Typography from "@/src/components/common/Typography";
 import { selectProviderData } from "@/src/utils/dummyDatas";
 
-
-
 const SelectProvider = () => {
 const [selectedId, setSelectedId] = useState<number | null>(null);
 

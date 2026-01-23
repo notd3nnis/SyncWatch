@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native-unistyles";
 export const styles = StyleSheet.create((theme) => ({
   TextStyle: (color, align) => ({
     fontFamily: "DM-Sans",
-    letterSpacing: 0.5,
+    letterSpacing: -0.5,
     color: color ? color : theme.color.white,
     textAlign: align ? align : "left",
     variants: {

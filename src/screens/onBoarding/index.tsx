@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { styles } from "./styles";
@@ -10,6 +11,8 @@ import { onboardingData } from "../../utils/dummyDatas";
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <OnboardingSlides
@@ -41,6 +44,7 @@ export default function Onboarding() {
             title="googleLogo"
             icon={<GoogleLogo width={20} height={20} />}
             variant="secondary"
+            onPress={() => router.navigate("/")}
           >
             Continue with Google
           </Button>

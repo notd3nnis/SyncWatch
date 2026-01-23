@@ -14,12 +14,12 @@ export const styles = StyleSheet.create((theme) => ({
   },
   imageSection: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   imageFrame: {
     backgroundColor: theme.color.backgroundLight,
-    width: 342,
+    width: 360,
     height: 342,
     borderRadius: theme.radius.xl,
     justifyContent: "flex-end",

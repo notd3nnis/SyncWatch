@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native-unistyles";
 export const styles = StyleSheet.create((theme) => ({
   container: {
     width: "100%",
-    paddingVertical: theme.spacing.m,
+    paddingVertical:12,
+    // paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.l,
     borderRadius: theme.radius.l,
     alignItems: "center",

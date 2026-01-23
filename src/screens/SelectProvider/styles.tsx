@@ -47,8 +47,8 @@ export const styles = StyleSheet.create((theme, rt) => ({
     marginRight: theme.spacing.s,
   },
   dot: {
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
     borderWidth: theme.radius.xs,
     borderColor: theme.color.gray02,
     borderRadius: 50,

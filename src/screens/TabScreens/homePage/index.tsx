@@ -2,7 +2,7 @@ import React from "react";
 import { View, Pressable, Image, FlatList } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { SearchIcon } from "@/src/assets/svgs";
 import Input from "@/src/components/common/Input";
 import Typography from "@/src/components/common/Typography";
@@ -11,40 +11,48 @@ const moviesData = [
   {
     id: 1,
     title: "The Unforgivable",
-    image: require("../../assets/images/image1.png"),
+    image: require("../../../assets/images/image1.png"),
   },
   {
     id: 2,
     title: "Old Guard",
-    image: require("../../assets/images/image2.png"),
+    image: require("../../../assets/images/image2.png"),
   },
-  { id: 3, title: "Steve", image: require("../../assets/images/image3.png") },
+  {
+    id: 3,
+    title: "Steve",
+    image: require("../../../assets/images/image3.png"),
+  },
   {
     id: 4,
     title: "The Irishman",
-    image: require("../../assets/images/image4.png"),
+    image: require("../../../assets/images/image4.png"),
   },
-  { id: 5, title: "Django", image: require("../../assets/images/image5.png") },
+  {
+    id: 5,
+    title: "Django",
+    image: require("../../../assets/images/image5.png"),
+  },
   {
     id: 6,
     title: "Oppenheimer",
-    image: require("../../assets/images/image6.png"),
+    image: require("../../../assets/images/image6.png"),
   },
   {
     id: 7,
     title: "Midnight",
-    image: require("../../assets/images/image7.png"),
+    image: require("../../../assets/images/image7.png"),
   },
-  { id: 8, title: "Ox", image: require("../../assets/images/image8.png") },
+  { id: 8, title: "Ox", image: require("../../../assets/images/image8.png") },
   {
     id: 9,
     title: "All Day and a Night",
-    image: require("../../assets/images/image9.png"),
+    image: require("../../../assets/images/image9.png"),
   },
   {
     id: 10,
     title: "White Frick",
-    image: require("../../assets/images/image10.png"),
+    image: require("../../../assets/images/image10.png"),
   },
 ];
 
@@ -60,7 +68,7 @@ function Home() {
   );
 
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.searchSection}>
         <Header
           title="Hi, Dennis"
@@ -94,7 +102,8 @@ const styles = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
     paddingHorizontal: theme.spacing.s,
-    // paddingBottom: rt.insets.bottom,
+    backgroundColor: theme.color.background,
+    paddingBottom: rt.insets.bottom,
   },
   searchSection: {
     flex: 1,

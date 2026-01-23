@@ -1,38 +1,53 @@
-import { NativeTabs, Icon, Label } from "expo-router/unstable-native-tabs";
+import { useEffect } from "react";
+import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import {
+  DMSans_400Regular,
+  DMSans_500Medium,
+  DMSans_600SemiBold,
+  DMSans_700Bold,
+  DMSans_800ExtraBold,
+} from "@expo-google-fonts/dm-sans";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Stack } from "expo-router";
 
-export default function TabLayout() {
+SplashScreen.preventAutoHideAsync();
+
+export default function Index() {
+  const [loaded, error] = useFonts({
+    "DM-Sans": DMSans_400Regular,
+    "DM-Sans-Medium": DMSans_500Medium,
+    "DM-Sans-SemiBold": DMSans_600SemiBold,
+    "DM-Sans-Bold": DMSans_700Bold,
+    "DM-Sans-ExtraBold": DMSans_800ExtraBold,
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+
+  }
   return (
-    <NativeTabs
-      iconColor={{
-        default: "#A3A3A3",
-        selected: "#FFFFFF",
-      }}
-      labelStyle={{
-        default: { color: "#A3A3A3" },
-        selected: { color: "#FFFFFF" },
-      }}
-    >
-      <NativeTabs.Trigger name="index">
-        <Label>Home</Label>
-        <Icon
-          sf={{ default: "house", selected: "house.fill" }}
-          drawable="custom_android_drawable"
+    <SafeAreaProvider>
+      <StatusBar style="light" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="index" options={{ gestureEnabled: false }} />
+        <Stack.Screen
+          name="select-provider"
+          options={{ gestureEnabled: false }}
         />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="parties">
-        <Label>Parties</Label>
-        <Icon
-          sf={{ default: "person.2", selected: "person.2.fill" }}
-          drawable="custom_settings_drawable"
-        />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="settings">
-        <Label>Settings</Label>
-        <Icon
-          sf={{ default: "gearshape", selected: "gearshape.fill" }}
-          drawable="custom_settings_drawable"
-        />
-      </NativeTabs.Trigger>
-    </NativeTabs>
+        <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
+      </Stack>
+    </SafeAreaProvider>
   );
 }

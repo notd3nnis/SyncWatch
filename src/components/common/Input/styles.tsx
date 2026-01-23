@@ -15,7 +15,6 @@ export const styles = StyleSheet.create((theme) => ({
     borderRadius: theme.radius.m,
     paddingHorizontal: theme.spacing.m,
     height: 48,
-    borderWidth: 2,
   },
   containerFocused: {
     // borderColor: '#E5E5E5',
