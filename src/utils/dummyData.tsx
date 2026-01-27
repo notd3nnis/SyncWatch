@@ -1,7 +1,7 @@
 import { SlideData } from "../components/OnboardingSlide/types";
 import { NetflixLogo, OnboardingImgOne, PrimeLogo } from "../assets/svgs";
 import { selectProviderType } from "./types";
-import { Movie } from "../components/Modal/types";
+import { MovieProps } from "../screens/createParty/types";
 
 export const onboardingData: SlideData[] = [
   {
@@ -32,7 +32,7 @@ export const selectProviderData: selectProviderType[] = [
   },
 ];
 
-export const moviesData: Movie[] = [
+export const moviesData: MovieProps[] = [
   {
     id: 1,
     title: "The Unforgivable",

@@ -11,11 +11,19 @@ export const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: theme.color.gray03,
+    backgroundColor: theme.color.background,
     borderRadius: theme.radius.m,
     paddingHorizontal: theme.spacing.m,
     height: 48,
+    variants: {
+      variant: {
+        secondary: {
+          backgroundColor: theme.color.gray03,
+        },
+      },
+    },
   },
+
   containerFocused: {
     // borderColor: '#E5E5E5',
     // backgroundColor: "rgba(255, 255, 255, 0.15)",

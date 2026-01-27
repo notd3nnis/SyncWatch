@@ -1,7 +1,5 @@
-export interface Movie {
-  id: number;
-  title: string;
-  image: any;
-  rank?: string;
-  description?: string;
+export interface CustomModalProps {
+  visible: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 }

@@ -48,13 +48,8 @@ export default function Index() {
           options={{ gestureEnabled: false }}
         />
         <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
-        <Stack.Screen
-          name="create-party/[id]"
-          options={{
-            presentation: "modal",
-            animation: "slide_from_bottom",
-          }}
-        />
+
+    
       </Stack>
     </SafeAreaProvider>
   );

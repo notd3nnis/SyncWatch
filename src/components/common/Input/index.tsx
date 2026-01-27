@@ -12,11 +12,15 @@ const Input: React.FC<InputProps> = ({
   rightIcon,
   onRightIconPress,
   placeholder,
+  variant,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const { theme } = useUnistyles();
 
+    styles.useVariants({
+      variant: variant,
+    });
   return (
     <View style={styles.wrapper}>
       {/* Label */}

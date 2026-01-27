@@ -1,28 +1,40 @@
+import { styles } from "./styles";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Pressable, Image, FlatList } from "react-native";
 
-import { styles } from "./styles";
-import { SearchIcon } from "@/src/assets/svgs";
+import { Stages } from "./types";
 import Header from "../../components/Header";
-import Input from "@/src/components/common/Input";
-import { moviesData } from "../../utils/dummyData";
-import Typography from "@/src/components/common/Typography";
+import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
-import { Movie } from "@/src/components/Modal/types";
+import Input from "@/src/components/common/Input";
+import { MovieProps } from "../createParty/types";
+import { moviesData } from "../../utils/dummyData";
+import { Details, Form, Success } from "../createParty";
+import Typography from "@/src/components/common/Typography";
 
 function Home() {
+  const [stage, setStage] = useState<Stages>("details");
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<MovieProps | null>(null);
 
   const handleCloseModal = () => {
     setModalVisible(false);
+    setStage("details");
     setTimeout(() => setSelectedMovie(null), 300);
   };
 
-  const handleMoviePress = (movie: Movie) => {
+  const handleMoviePress = (movie: MovieProps) => {
     setSelectedMovie(movie);
     setModalVisible(true);
+  };
+
+  const handleCreateParty = () => {
+    if (stage === "details") {
+      setStage("form");
+    } else if (stage === "form") {
+      setStage("success");
+    }
   };
 
   const renderItem = ({ item }: any) => (
@@ -42,7 +54,11 @@ function Home() {
           title="Hi, Dennis"
           description="Pick something to watch together."
         />
-        <Input placeholder="Search movies or shows" leftIcon={<SearchIcon />} />
+        <Input
+          variant="secondary"
+          placeholder="Search movies or shows"
+          leftIcon={<SearchIcon />}
+        />
       </View>
       <View style={styles.movieSection}>
         <View style={styles.searchesWrapper}>
@@ -61,11 +77,29 @@ function Home() {
           showsVerticalScrollIndicator={false}
         />
       </View>
-      <MovieModal
-        visible={modalVisible}
-        onClose={handleCloseModal}
-        movie={selectedMovie}
-      />
+      <MovieModal visible={modalVisible} onClose={handleCloseModal}>
+        {stage === "details" && (
+          <Details
+            handleCreateParty={handleCreateParty}
+            onClose={handleCloseModal}
+            movie={selectedMovie}
+          />
+        )}
+        {stage === "form" && (
+          <Form
+            handleCreateParty={handleCreateParty}
+            onClose={handleCloseModal}
+            movie={selectedMovie}
+          />
+        )}
+        {stage === "success" && (
+          <Success
+            handleCreateParty={handleCreateParty}
+            onClose={handleCloseModal}
+            movie={selectedMovie}
+          />
+        )}
+      </MovieModal>
     </SafeAreaView>
   );
 }
