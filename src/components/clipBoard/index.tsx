@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Pressable, View } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
 import * as Clipboard from "expo-clipboard";
-import Typography from "..//common/Typography";
+import Typography from "../common/Typography";
 import { styles } from "./styles";
 import { ClipboardCopyProps } from "./types";
 

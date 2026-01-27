@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../../screens/homePage";
+import Home from "../../screens/HomePage";
 function HomePage() {
   return <Home />;
 }

@@ -1,7 +1,7 @@
 import { SlideData } from "../components/OnboardingSlide/types";
 import { NetflixLogo, OnboardingImgOne, PrimeLogo } from "../assets/svgs";
 import { selectProviderType } from "./types";
-import { MovieProps } from "../screens/createParty/types";
+import { MovieProps } from "../screens/CreateParty/types";
 
 export const onboardingData: SlideData[] = [
   {
