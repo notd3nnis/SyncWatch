@@ -7,7 +7,7 @@ import { styles } from "./styles";
 import Button from "@/src/components/common/Button";
 import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
-import { onboardingData } from "../../utils/dummyDatas";
+import { onboardingData } from "../../utils/dummyData";
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,7 +44,7 @@ export default function Onboarding() {
             title="googleLogo"
             icon={<GoogleLogo width={20} height={20} />}
             variant="secondary"
-            onPress={() => router.navigate("/")}
+            onPress={() => router.navigate("/(tabs)/home")}
           >
             Continue with Google
           </Button>

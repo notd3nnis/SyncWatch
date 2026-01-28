@@ -1,11 +1,15 @@
 export const palette = {
   pink01: "#FF007B",
   purple01: "#7130F0",
-  white: "#FFFFFF",
   red: "EF5350",
-  black: "#0A0A0A",
+  orange: "#8C1C13",
 
-  gray01: "#171717",
+  black01: "#0A0A0A",
+  back02: "#171717",
+
+  white01: "#FFFFFF",
+  white02: "#E5E5E5",
+
   gray02: "#737373",
   gray03: "#262626",
   gray04: "#A3A3A3",
@@ -13,11 +17,16 @@ export const palette = {
 
 export const darkTheme = {
   color: {
-    background: palette.black,
-    backgroundLight: palette.gray01,
+    background: palette.black01,
+    backgroundLight: palette.back02,
+
     primary: palette.pink01,
     secondary: palette.purple01,
-    white: palette.white,
+    abstract: palette.orange,
+
+    white: palette.white01,
+    whiteLight: palette.white02,
+
     textMuted: palette.gray04,
     error: palette.red,
 

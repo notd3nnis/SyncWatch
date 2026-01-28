@@ -1,12 +1,7 @@
 import React from "react";
-import { Text, View } from "react-native";
-
-const Parties = () => {
-  return (
-    <View>
-      <Text>settings</Text>
-    </View>
-  );
+import PartyScreen from "../../screens/Parties";
+const Party = () => {
+  return <PartyScreen />;
 };
 
-export default Parties;
+export default Party;

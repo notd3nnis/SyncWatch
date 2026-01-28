@@ -5,5 +5,6 @@ export interface InputProps extends TextInputProps {
   error?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  variant?: "secondary";
   onRightIconPress?: () => void;
 }

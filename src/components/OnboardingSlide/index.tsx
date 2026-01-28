@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { View, Dimensions } from "react-native";
 import Animated, {
-useSharedValue,
-useAnimatedScrollHandler,
+  useSharedValue,
+  useAnimatedScrollHandler,
 } from "react-native-reanimated";
-import  SlideItem  from "./slideItem";
+import SlideItem from "./slideItem";
 import { SlideData } from "./types";
-
 
 import { styles } from "./styles";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
-
 
 interface OnboardingSlidesProps {
   slides: SlideData[];
@@ -58,7 +55,10 @@ export default function OnboardingSlides({
       scrollX.value = event.contentOffset.x;
     },
     onMomentumEnd: (event) => {
-      const newIndex = Math.round(event.contentOffset.x / SCREEN_WIDTH);
+      const x = event.contentOffset?.x ?? 0;
+      if (!Number.isFinite(x) || SCREEN_WIDTH <= 0) return;
+      const newIndex = Math.round(x / SCREEN_WIDTH);
+
       if (newIndex !== currentIndex) {
         onIndexChange(newIndex);
         onSlideChange?.(newIndex);

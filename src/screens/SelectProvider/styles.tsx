@@ -5,6 +5,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 export const styles = StyleSheet.create((theme, rt) => ({
   container: {
+    backgroundColor: theme.color.background,
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",

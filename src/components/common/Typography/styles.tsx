@@ -4,7 +4,7 @@ export const styles = StyleSheet.create((theme) => ({
   TextStyle: (color, align) => ({
     fontFamily: "DM-Sans",
     letterSpacing: -0.5,
-    color: color ? color : theme.color.white,
+    color: color ? color : theme.color.whiteLight,
     textAlign: align ? align : "left",
     variants: {
       variant: {
@@ -43,6 +43,7 @@ export const styles = StyleSheet.create((theme) => ({
         semibold: { fontFamily: "DMSans-SemiBold" },
         bold: { fontFamily: "DMSans-Bold" },
         extrabold: { fontFamily: "DMSans-ExtraBold" },
+        xxBold: { fontFamily: "DMSans_xxBold" },
       } as const,
     },
   }),
