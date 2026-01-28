@@ -1,18 +1,10 @@
 import React from "react";
 import { View, Pressable } from "react-native";
-import { StyleSheet, useUnistyles } from "react-native-unistyles";
+import { useUnistyles } from "react-native-unistyles";
+
 import Typography from "../common/Typography";
-
-interface TabOption {
-  label: string;
-  value: string;
-}
-
-interface CustomTabProps {
-  options: TabOption[];
-  selectedValue: string;
-  onValueChange: (value: string) => void;
-}
+import { styles } from "./styles";
+import { CustomTabProps } from "./types";
 
 const CustomTab: React.FC<CustomTabProps> = ({
   options,
@@ -42,8 +34,8 @@ const CustomTab: React.FC<CustomTabProps> = ({
           >
             <Typography
               variant="body"
-              weight="medium"
-              color={isSelected ? theme.color.white : theme.color.textMuted}
+              weight="regular"
+              color={isSelected ? theme.color.white : theme.color.gray02}
             >
               {option.label}
             </Typography>
@@ -55,32 +47,3 @@ const CustomTab: React.FC<CustomTabProps> = ({
 };
 
 export default CustomTab;
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    flexDirection: "row",
-    backgroundColor: theme.color.backgroundLight,
-    borderRadius: theme.radius.m,
-    padding: 4,
-  },
-  tab: {
-    flex: 1,
-    paddingVertical: theme.spacing.s,
-    paddingHorizontal: theme.spacing.m,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: theme.radius.s,
-  },
-  tabSelected: {
-    backgroundColor: theme.color.background,
-  },
-  tabFirst: {
-    // Additional styling for first tab if needed
-  },
-  tabLast: {
-    // Additional styling for last tab if needed
-  },
-  tabPressed: {
-    opacity: 0.7,
-  },
-}));

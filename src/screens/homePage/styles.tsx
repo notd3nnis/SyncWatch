@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native-unistyles'
 export const styles = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
-    paddingHorizontal: theme.spacing.s,
     backgroundColor: theme.color.background,
+    paddingHorizontal: theme.spacing.s,
     paddingBottom: rt.insets.bottom,
   },
   searchSection: {

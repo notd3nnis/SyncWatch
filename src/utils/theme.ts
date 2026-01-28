@@ -4,12 +4,12 @@ export const palette = {
   red: "EF5350",
   orange: "#8C1C13",
 
-  black: "#0A0A0A",
+  black01: "#0A0A0A",
+  back02: "#171717",
 
   white01: "#FFFFFF",
   white02: "#E5E5E5",
 
-  gray01: "#171717",
   gray02: "#737373",
   gray03: "#262626",
   gray04: "#A3A3A3",
@@ -17,8 +17,8 @@ export const palette = {
 
 export const darkTheme = {
   color: {
-    background: palette.black,
-    backgroundLight: palette.gray01,
+    background: palette.black01,
+    backgroundLight: palette.back02,
 
     primary: palette.pink01,
     secondary: palette.purple01,
