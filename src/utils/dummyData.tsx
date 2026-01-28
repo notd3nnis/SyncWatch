@@ -1,7 +1,7 @@
 import { SlideData } from "../components/OnboardingSlide/types";
 import { NetflixLogo, OnboardingImgOne, PrimeLogo } from "../assets/svgs";
 import { selectProviderType } from "./types";
-import { MovieProps } from "../screens/CreateParty/types";
+import { MovieProps } from "../screens/HomePage/CreateParty/types";
 
 export const onboardingData: SlideData[] = [
   {
@@ -101,6 +101,7 @@ export const moviesData: MovieProps[] = [
     description: "An intense drama exploring complex themes.",
   },
 ];
+
 
 export const UpcomingParties = [
   {

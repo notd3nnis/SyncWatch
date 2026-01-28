@@ -1,12 +1,10 @@
 import { StyleSheet } from "react-native-unistyles";
 
 export const styles = StyleSheet.create((theme) => ({
-  wrapper: {
-    // gap: theme.spacing.m,
-  },
+  wrapper: {},
   label: {
     color: theme.color.white,
-    marginBottom: theme.spacing.xs,
+    marginBottom: theme.spacing.s,
   },
   container: {
     flexDirection: "row",
@@ -24,10 +22,7 @@ export const styles = StyleSheet.create((theme) => ({
     },
   },
 
-  containerFocused: {
-    // borderColor: '#E5E5E5',
-    // backgroundColor: "rgba(255, 255, 255, 0.15)",
-  },
+  containerFocused: {},
   containerError: {
     borderColor: theme.color.error,
   },

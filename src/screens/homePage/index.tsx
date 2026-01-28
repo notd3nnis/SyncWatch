@@ -8,9 +8,9 @@ import Header from "../../components/Header";
 import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";
-import { MovieProps } from "../CreateParty/types";
+import { MovieProps } from "./CreateParty/types";
 import { moviesData } from "../../utils/dummyData";
-import { Details, Form, Success } from "../CreateParty";
+import { Details, Form, Success } from "./CreateParty";
 import Typography from "@/src/components/common/Typography";
 
 function Home() {

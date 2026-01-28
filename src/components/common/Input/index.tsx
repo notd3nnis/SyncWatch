@@ -18,9 +18,9 @@ const Input: React.FC<InputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const { theme } = useUnistyles();
 
-    styles.useVariants({
-      variant: variant,
-    });
+  styles.useVariants({
+    variant: variant,
+  });
   return (
     <View style={styles.wrapper}>
       {/* Label */}
@@ -30,7 +30,6 @@ const Input: React.FC<InputProps> = ({
         </Typography>
       )}
 
-      {/* Input Container */}
       <View
         style={[
           styles.container,
@@ -38,20 +37,17 @@ const Input: React.FC<InputProps> = ({
           error && styles.containerError,
         ]}
       >
-        {/* Left Icon */}
         {leftIcon && <View style={styles.iconLeft}>{leftIcon}</View>}
 
-        {/* Text Input */}
         <TextInput
           style={styles.input}
           placeholder={placeholder}
-          placeholderTextColor={theme.color.textMuted}
+          placeholderTextColor={theme.color.gray02}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           {...props}
         />
 
-        {/* Right Icon */}
         {rightIcon && (
           <Pressable
             onPress={onRightIconPress}
@@ -63,7 +59,6 @@ const Input: React.FC<InputProps> = ({
         )}
       </View>
 
-      {/* Error Message */}
       {error && (
         <Typography variant="caption" weight="regular" style={styles.error}>
           {error}

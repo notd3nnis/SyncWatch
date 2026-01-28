@@ -120,7 +120,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
                   ) : (
                     <Typography
                       variant="smallerBody"
-                      weight="medium"
+                      weight="regular"
                       color={theme.color.white}
                     >
                       {participant.name.charAt(0).toUpperCase()}
@@ -138,7 +138,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
                   ]}
                 >
                   <Typography
-                    variant="smallerBody"
+                    variant="caption"
                     weight="medium"
                     align="center"
                     color={theme.color.background}

@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-import { View, FlatList } from "react-native";
-import { StyleSheet, useUnistyles } from "react-native-unistyles";
+import { View, FlatList, Pressable } from "react-native";
+import { useUnistyles } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Typography from "@/src/components/common/Typography";
-import CustomTab from "@/src/components/Tabs";
-import PartyCard from "@/src/components/PartyCard";
-import { pastParties, UpcomingParties } from "@/src/utils/dummyData";
+
+import { styles } from "./styles";
 import Header from "@/src/components/Header";
+import MovieModal from "@/src/components/Modal";
+import Input from "@/src/components/common/Input";
+import PartyCard from "@/src/components/PartyCard";
+import CustomTab from "@/src/components/CustomTabs";
+import Typography from "@/src/components/common/Typography";
+import { pastParties, UpcomingParties } from "@/src/utils/dummyData";
+import Button from "@/src/components/common/Button";
+
+const tabOptions = [
+  { label: "Upcoming parties", value: "Upcoming" },
+  { label: "Past parties", value: "Ended" },
+];
 
 export default function PartiesScreen() {
   const { theme } = useUnistyles();
   const [selectedTab, setSelectedTab] = useState("Upcoming");
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const tabOptions = [
-    { label: "Upcoming parties", value: "Upcoming" },
-    { label: "Past parties", value: "Ended" },
-  ];
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
 
+  const handleJoinParty = () => {
+    setModalVisible(true);
+  };
   const renderItem = ({ item }: any) => (
     <PartyCard
       id={item.id}
@@ -85,27 +98,43 @@ export default function PartiesScreen() {
           }
         />
       )}
+      <View style={styles.stickyButtonContainer}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.joinButton,
+            pressed && styles.joinButtonPressed,
+          ]}
+          onPress={handleJoinParty}
+        >
+          <Typography
+            align="center"
+            variant="h2"
+            weight="bold"
+            color={theme.color.white}
+          >
+            +
+          </Typography>
+          <Typography
+            align="center"
+            variant="body"
+            weight="medium"
+            color={theme.color.white}
+          >
+            Join a party
+          </Typography>
+        </Pressable>
+      </View>
+      <MovieModal visible={modalVisible} onClose={handleCloseModal}>
+        <View style={styles.joinPartySection}>
+          <Typography weight="semibold" variant="body" align="center">
+            Join a watch party
+          </Typography>
+          <Input label="Enter invite code" placeholder="6-digit invite code" />
+          <View style={styles.ButtonWrapper}>
+            <Button title="Go to party">Go to party</Button>
+          </View>
+        </View>
+      </MovieModal>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create((theme, rt) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.color.background,
-    paddingHorizontal: theme.spacing.s,
-    paddingBottom: rt.insets.bottom,
-  },
-  header: {
-    paddingVertical: theme.spacing.m,
-  },
-  tabContainer: {
-    paddingBottom: theme.spacing.l,
-  },
-  listContent: {
-    gap: theme.spacing.l,
-  },
-  emptyContainer: {
-    alignItems: "center",
-  },
-}));

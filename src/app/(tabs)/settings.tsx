@@ -1,12 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
+import React from "react";
+import SettingsPage from "../../screens/Settings";
 const Settings = () => {
-  return (
-    <View>
-      <Text>settings</Text>
-    </View>
-  )
-}
+  return <SettingsPage />;
+};
 
-export default Settings
+export default Settings;
