@@ -1,7 +1,7 @@
 export const palette = {
   pink01: "#FF007B",
   purple01: "#7130F0",
-  red: "EF5350",
+  red: "#D83037",
   orange: "#8C1C13",
 
   black01: "#0A0A0A",

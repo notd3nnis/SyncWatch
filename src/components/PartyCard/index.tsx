@@ -29,8 +29,8 @@ const PartyCard: React.FC<PartyCardProps> = ({
 
   const getStatusLabel = () => {
     switch (status) {
-      case "Upcoming":
-        return "Upcoming";
+      case "Current":
+        return "Current";
       case "Ended":
         return "Ended";
     }
@@ -38,7 +38,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
 
   const getStatusColor = () => {
     switch (status) {
-      case "Upcoming":
+      case "Current":
         return theme.color.primary;
       case "Ended":
         return theme.color.secondary;

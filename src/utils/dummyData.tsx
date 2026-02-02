@@ -103,7 +103,7 @@ export const moviesData: MovieProps[] = [
 ];
 
 
-export const UpcomingParties = [
+export const CurrentParties = [
   {
     id: "1",
     title: "Three Musketeers!",
@@ -118,7 +118,7 @@ export const UpcomingParties = [
       { id: "4", name: "Lisa", color: "#FF007B" },
       { id: "5", name: "John", color: "#7130F0" },
     ],
-    status: "Upcoming" as const,
+    status: "Current" as const,
   },
   {
     id: "2",
@@ -131,7 +131,7 @@ export const UpcomingParties = [
       { id: "1", name: "Alex", color: "#7130F0" },
       { id: "2", name: "Emma", color: "#FF007B" },
     ],
-    status: "Upcoming" as const,
+    status: "Current" as const,
   },
 ];
 

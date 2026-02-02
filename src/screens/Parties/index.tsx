@@ -10,17 +10,17 @@ import Input from "@/src/components/common/Input";
 import PartyCard from "@/src/components/PartyCard";
 import CustomTab from "@/src/components/CustomTabs";
 import Typography from "@/src/components/common/Typography";
-import { pastParties, UpcomingParties } from "@/src/utils/dummyData";
+import { pastParties, CurrentParties } from "@/src/utils/dummyData";
 import Button from "@/src/components/common/Button";
 
 const tabOptions = [
-  { label: "Upcoming parties", value: "Upcoming" },
+  { label: "Current parties", value: "Current" },
   { label: "Past parties", value: "Ended" },
 ];
 
 export default function PartiesScreen() {
   const { theme } = useUnistyles();
-  const [selectedTab, setSelectedTab] = useState("Upcoming");
+  const [selectedTab, setSelectedTab] = useState("Current");
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleCloseModal = () => {
@@ -58,9 +58,9 @@ export default function PartiesScreen() {
           onValueChange={setSelectedTab}
         />
       </View>
-      {selectedTab === "Upcoming" && (
+      {selectedTab === "Current" && (
         <FlatList
-          data={UpcomingParties}
+          data={CurrentParties}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
@@ -126,7 +126,7 @@ export default function PartiesScreen() {
       </View>
       <MovieModal visible={modalVisible} onClose={handleCloseModal}>
         <View style={styles.joinPartySection}>
-          <Typography weight="semibold" variant="body" align="center">
+          <Typography weight="semibold" variant="subHeading" align="center">
             Join a watch party
           </Typography>
           <Input label="Enter invite code" placeholder="6-digit invite code" />

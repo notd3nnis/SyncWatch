@@ -15,7 +15,6 @@ export const styles = StyleSheet.create((theme) => ({
   content: {
     gap: theme.spacing.l,
   },
-
   rankBadge: {
     flexDirection: "row",
     alignItems: "center",
@@ -41,11 +40,11 @@ export const styles = StyleSheet.create((theme) => ({
   banner: {
     width: 78,
     height: 44,
-    borderRadius: theme.radius.xs,
   },
   bannerImg: {
     width: "100%",
     height: "100%",
+    borderRadius: theme.radius.xs,
   },
 
   formContainer: {
