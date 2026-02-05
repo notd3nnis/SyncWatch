@@ -1,5 +1,10 @@
 import { SlideData } from "../components/OnboardingSlide/types";
-import { NetflixLogo, OnboardingImgOne, PrimeLogo } from "../assets/svgs";
+import {
+  NetflixLogo,
+  OnboardingImgOne,
+  OnboardingImgTwo,
+  PrimeLogo,
+} from "../assets/svgs";
 import { selectProviderType } from "./types";
 import { MovieProps } from "../screens/HomePage/CreateParty/types";
 
@@ -15,7 +20,7 @@ export const onboardingData: SlideData[] = [
     id: 2,
     title: "One tap. Everyone's in!",
     description: "Start the movie, chat live, & react in real time.",
-    image: <OnboardingImgOne />,
+    image: <OnboardingImgTwo />,
   },
 ];
 
@@ -101,7 +106,6 @@ export const moviesData: MovieProps[] = [
     description: "An intense drama exploring complex themes.",
   },
 ];
-
 
 export const CurrentParties = [
   {
