@@ -1,6 +1,4 @@
 import { StyleSheet } from "react-native-unistyles";
-import { Dimensions } from "react-native";
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 export const styles = StyleSheet.create((theme, rt) => ({
   container: {
