@@ -4,7 +4,7 @@ import { useUnistyles } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { styles } from "./styles";
-import Header from "@/src/components/Header";
+import Header from "@/src/components/TabHeader";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";
 import PartyCard from "@/src/components/PartyCard";

@@ -3,7 +3,7 @@ export const palette = {
   purple01: "#7130F0",
   red: "#D83037",
   orange: "#8C1C13",
-
+  green: "#00A14B",
   black01: "#0A0A0A",
   back02: "#171717",
 
@@ -32,6 +32,8 @@ export const darkTheme = {
 
     gray02: palette.gray02,
     gray03: palette.gray03,
+
+    active: palette.green,
   },
   spacing: {
     xs: 4,

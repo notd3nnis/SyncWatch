@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Pressable, Image, FlatList } from "react-native";
 
 import { Stages } from "./types";
-import Header from "../../components/Header";
+import Header from "../../components/TabHeader";
 import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";

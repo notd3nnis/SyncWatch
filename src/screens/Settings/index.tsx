@@ -166,7 +166,6 @@ export default function SettingsScreen() {
               </View>
               <NextPageIcon />
             </Pressable>
-
             <View style={styles.divider} />
 
             <Pressable style={styles.menuItem} onPress={handleLogout}>
