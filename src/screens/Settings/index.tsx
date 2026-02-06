@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { View, Pressable, Switch, ScrollView, Image } from "react-native";
-import { StyleSheet, useUnistyles } from "react-native-unistyles";
+import { useUnistyles } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { styles } from "./styles";
 import Typography from "@/src/components/common/Typography";
 import {
   AccountIcon,
@@ -11,9 +13,12 @@ import {
   ProfileIcon,
   PushNoticationIcon,
 } from "@/src/assets/svgs";
+import { useRouter } from "expo-router";
 
 export default function SettingsScreen() {
   const [pushNotifications, setPushNotifications] = useState(true);
+  const router = useRouter();
+
   const { theme } = useUnistyles();
 
   const handlePress = (item: string) => {
@@ -84,7 +89,7 @@ export default function SettingsScreen() {
 
             <Pressable
               style={styles.menuItem}
-              onPress={() => handlePress("Streaming Accounts")}
+              onPress={() => router.push("/(tabs)/settings/streaming-accounts")}
             >
               <View style={styles.menuLeft}>
                 <View style={styles.iconWrapper}>
@@ -132,7 +137,7 @@ export default function SettingsScreen() {
         {/* Support Section */}
         <View style={styles.section}>
           <Typography
-            variant="caption"
+            variant="smallBody"
             weight="medium"
             color={theme.color.textMuted}
             style={styles.sectionTitle}
@@ -185,62 +190,3 @@ export default function SettingsScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.color.background,
-    // paddingHorizontal: theme.spacing.m,
-    paddingHorizontal: 20,
-  },
-  profileSection: {
-    alignItems: "center",
-    paddingVertical: theme.spacing.xl,
-  },
-  avatarContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    backgroundColor: theme.color.primary,
-    padding: 4,
-    marginBottom: theme.spacing.m,
-  },
-  avatar: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 46,
-  },
-
-  section: {
-    marginBottom: theme.spacing.l,
-  },
-  sectionTitle: {
-    marginBottom: theme.spacing.s,
-  },
-  menuGroup: {},
-  menuItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: theme.spacing.m,
-    paddingHorizontal: theme.spacing.m,
-    borderRadius: theme.radius.m,
-    backgroundColor: theme.color.backgroundLight,
-  },
-  menuLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: theme.spacing.m,
-  },
-  iconWrapper: {
-    width: 32,
-    height: 32,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  divider: {
-    height: 16,
-    backgroundColor: theme.color.background,
-    marginLeft: theme.spacing.m + 32 + theme.spacing.m,
-  },
-}));
