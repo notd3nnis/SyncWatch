@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
-import { StyleSheet, useUnistyles } from "react-native-unistyles";
+import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Pressable, ScrollView, Image } from "react-native";
 
@@ -8,9 +8,9 @@ import Input from "@/src/components/common/Input";
 import Button from "@/src/components/common/Button";
 import Typography from "@/src/components/common/Typography";
 import { avatars } from "@/src/utils/dummyData";
+import StackHeader from "@/src/components/StackHeader";
 
 export default function EditProfileScreen() {
-  const { theme } = useUnistyles();
   const router = useRouter();
 
   const [selectedAvatar, setSelectedAvatar] = useState(1);
@@ -22,15 +22,15 @@ export default function EditProfileScreen() {
     router.back();
   };
 
+  const handleBack = () => {
+    router.back();
+  };
   return (
-    <SafeAreaView style={styles.container} edges={["bottom"]}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+      <StackHeader handleBack={() => handleBack()} title="Edit Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.descriptionContainer}>
-          <Typography
-            variant="body"
-            weight="regular"
-            color={theme.color.textMuted}
-          >
+          <Typography variant="smallBody" weight="medium">
             Select from the avatars below to change your profile icon.
           </Typography>
         </View>
@@ -87,14 +87,12 @@ const styles = StyleSheet.create((theme) => ({
     paddingHorizontal: theme.spacing.m,
   },
   descriptionContainer: {
-    // paddingHorizontal: theme.spacing.l,
     paddingTop: theme.spacing.m,
     paddingBottom: theme.spacing.l,
   },
   avatarGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    // paddingHorizontal: theme.spacing.l,
     gap: theme.spacing.m,
     marginBottom: theme.spacing.xl,
   },
@@ -114,7 +112,6 @@ const styles = StyleSheet.create((theme) => ({
     borderRadius: 26,
   },
   form: {
-    // paddingHorizontal: theme.spacing.l,
     gap: theme.spacing.l,
   },
   inputGroup: {
@@ -124,7 +121,6 @@ const styles = StyleSheet.create((theme) => ({
     marginBottom: theme.spacing.xs,
   },
   buttonContainer: {
-    // paddingHorizontal: theme.spacing.l,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
   },
