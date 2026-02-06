@@ -5,12 +5,18 @@ export default function SettingsLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: "#000000" },
       }}
     >
       <Stack.Screen name="index" />
       <Stack.Screen
         name="streaming-accounts"
+        options={{
+          presentation: "card",
+          animation: "slide_from_right",
+        }}
+      />
+      <Stack.Screen
+        name="edit-profile"
         options={{
           presentation: "card",
           animation: "slide_from_right",

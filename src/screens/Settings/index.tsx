@@ -32,11 +32,10 @@ export default function SettingsScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Profile Section */}
         <View style={styles.profileSection}>
           <View style={styles.avatarContainer}>
             <Image
-              source={require("../../assets/images/Avatar.png")}
+              source={require("../../assets/images/Avatar1.png")}
               style={styles.avatar}
             />
           </View>
@@ -52,7 +51,6 @@ export default function SettingsScreen() {
           </Typography>
         </View>
 
-        {/* Account Section */}
         <View style={styles.section}>
           <Typography
             variant="smallBody"
@@ -64,10 +62,7 @@ export default function SettingsScreen() {
           </Typography>
 
           <View style={styles.menuGroup}>
-            <Pressable
-              style={styles.menuItem}
-              onPress={() => handlePress("Personal Info")}
-            >
+            <Pressable style={styles.menuItem} onPress={() => router.push("/(tabs)/settings/edit-profile")}>
               <View style={styles.menuLeft}>
                 <View style={styles.iconWrapper}>
                   <Typography variant="body">
@@ -134,7 +129,6 @@ export default function SettingsScreen() {
           </View>
         </View>
 
-        {/* Support Section */}
         <View style={styles.section}>
           <Typography
             variant="smallBody"
