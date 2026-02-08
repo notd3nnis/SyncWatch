@@ -14,9 +14,12 @@ import {
   PushNoticationIcon,
 } from "@/src/assets/svgs";
 import { useRouter } from "expo-router";
+import LogoutModal from "@/src/components/LogoutModal ";
 
 export default function SettingsScreen() {
   const [pushNotifications, setPushNotifications] = useState(true);
+  const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+
   const router = useRouter();
 
   const { theme } = useUnistyles();
@@ -26,9 +29,16 @@ export default function SettingsScreen() {
   };
 
   const handleLogout = () => {
-    console.log("Logout");
+    setLogoutModalVisible(true);
   };
 
+  const handleLogoutConfirm = () => {
+    setLogoutModalVisible(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setLogoutModalVisible(false);
+  };
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -62,7 +72,10 @@ export default function SettingsScreen() {
           </Typography>
 
           <View style={styles.menuGroup}>
-            <Pressable style={styles.menuItem} onPress={() => router.push("/(tabs)/settings/edit-profile")}>
+            <Pressable
+              style={styles.menuItem}
+              onPress={() => router.push("/(tabs)/settings/edit-profile")}
+            >
               <View style={styles.menuLeft}>
                 <View style={styles.iconWrapper}>
                   <Typography variant="body">
@@ -178,6 +191,11 @@ export default function SettingsScreen() {
               <NextPageIcon />
             </Pressable>
           </View>
+          <LogoutModal
+            visible={logoutModalVisible}
+            onClose={handleLogoutCancel}
+            onConfirm={handleLogoutConfirm}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

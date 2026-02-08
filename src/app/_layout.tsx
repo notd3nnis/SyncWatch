@@ -22,7 +22,7 @@ export default function Index() {
     "DM-Sans-SemiBold": DMSans_600SemiBold,
     "DM-Sans-Bold": DMSans_700Bold,
     "DM-Sans-ExtraBold": DMSans_800ExtraBold,
-    "DMSans_xxBold": DMSans_900Black,
+    DMSans_xxBold: DMSans_900Black,
   });
 
   useEffect(() => {
@@ -47,9 +47,11 @@ export default function Index() {
           name="select-provider"
           options={{ gestureEnabled: false }}
         />
+        <Stack.Screen
+          name="party-lobby"
+          options={{ gestureEnabled: false }}
+        />
         <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
-
-    
       </Stack>
     </SafeAreaProvider>
   );

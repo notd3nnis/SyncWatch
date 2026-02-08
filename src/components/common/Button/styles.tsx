@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native-unistyles";
 export const styles = StyleSheet.create((theme) => ({
   container: {
     width: "100%",
-    paddingVertical:12,
+    paddingVertical: 12,
     // paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.l,
     borderRadius: theme.radius.l,
@@ -16,6 +16,13 @@ export const styles = StyleSheet.create((theme) => ({
         },
         secondary: {
           backgroundColor: theme.color.backgroundLight,
+        },
+        tertiary: {
+          backgroundColor: theme.color.error,
+        },
+        netural: {
+          backgroundColor: theme.color.white,
+          color: theme.color.background,
         },
       },
     },

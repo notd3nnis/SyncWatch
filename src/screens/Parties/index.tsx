@@ -12,6 +12,7 @@ import CustomTab from "@/src/components/CustomTabs";
 import Typography from "@/src/components/common/Typography";
 import { pastParties, CurrentParties } from "@/src/utils/dummyData";
 import Button from "@/src/components/common/Button";
+import { useRouter } from "expo-router";
 
 const tabOptions = [
   { label: "Current parties", value: "Current" },
@@ -19,6 +20,8 @@ const tabOptions = [
 ];
 
 export default function PartiesScreen() {
+  const router = useRouter();
+
   const { theme } = useUnistyles();
   const [selectedTab, setSelectedTab] = useState("Current");
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,6 +32,11 @@ export default function PartiesScreen() {
 
   const handleJoinParty = () => {
     setModalVisible(true);
+  };
+
+  const handleNextPage = () => {
+    setModalVisible(false);
+    router.push("/party-lobby");
   };
   const renderItem = ({ item }: any) => (
     <PartyCard
@@ -131,7 +139,9 @@ export default function PartiesScreen() {
           </Typography>
           <Input label="Enter invite code" placeholder="6-digit invite code" />
           <View style={styles.ButtonWrapper}>
-            <Button title="Go to party">Go to party</Button>
+            <Button onPress={() => handleNextPage()} title="Go to party">
+              Go to party
+            </Button>
           </View>
         </View>
       </MovieModal>

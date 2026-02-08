@@ -34,7 +34,10 @@ export const Success = ({
           </View>
         </View>
         <View>
-          <ClipboardCopy text="7FQ9K2" />
+          <ClipboardCopy
+            text="7FQ9K2"
+            label="Share invite code"
+          />
         </View>
         <Button title="go-to-party">Go to Party</Button>
       </View>
