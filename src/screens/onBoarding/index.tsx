@@ -44,7 +44,7 @@ export default function Onboarding() {
             title="googleLogo"
             icon={<GoogleLogo width={20} height={20} />}
             variant="secondary"
-            onPress={() => router.navigate("/(tabs)/home")}
+            onPress={() => router.navigate("/select-provider")}
           >
             Continue with Google
           </Button>

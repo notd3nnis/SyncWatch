@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { View, Dimensions } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
+  runOnJS,
 } from "react-native-reanimated";
 import SlideItem from "./slideItem";
 import { SlideData } from "./types";
@@ -27,28 +28,51 @@ export default function OnboardingSlides({
   onIndexChange,
 }: OnboardingSlidesProps) {
   const scrollX = useSharedValue(0);
-  const scrollViewRef = React.useRef<Animated.ScrollView>(null);
+  const scrollViewRef = useRef<Animated.ScrollView>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Auto-slide effect
   useEffect(() => {
-    const interval = setInterval(() => {
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    intervalRef.current = setInterval(() => {
+      if (!scrollViewRef.current) {
+        return;
+      }
+
       const nextIndex = (currentIndex + 1) % slides.length;
-      scrollViewRef.current?.scrollTo({
-        x: nextIndex * SCREEN_WIDTH,
-        animated: true,
-      });
-      onIndexChange(nextIndex);
-      onSlideChange?.(nextIndex);
+      
+      try {
+        scrollViewRef.current?.scrollTo({
+          x: nextIndex * SCREEN_WIDTH,
+          animated: true,
+        });
+        onIndexChange(nextIndex);
+        onSlideChange?.(nextIndex);
+      } catch (error) {
+        console.log("Auto-scroll error:", error);
+      }
     }, autoSlideInterval);
 
-    return () => clearInterval(interval);
-  }, [
-    onIndexChange,
-    onSlideChange,
-    currentIndex,
-    slides.length,
-    autoSlideInterval,
-  ]);
+    // Cleanup function
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [currentIndex, slides.length, autoSlideInterval, onIndexChange, onSlideChange]);
+
+  // Function to handle index change on JS thread
+  const handleIndexChange = (newIndex: number) => {
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < slides.length) {
+      onIndexChange(newIndex);
+      onSlideChange?.(newIndex);
+    }
+  };
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -57,12 +81,11 @@ export default function OnboardingSlides({
     onMomentumEnd: (event) => {
       const x = event.contentOffset?.x ?? 0;
       if (!Number.isFinite(x) || SCREEN_WIDTH <= 0) return;
+      
       const newIndex = Math.round(x / SCREEN_WIDTH);
-
-      if (newIndex !== currentIndex) {
-        onIndexChange(newIndex);
-        onSlideChange?.(newIndex);
-      }
+      
+      // Use runOnJS to safely call the handler on JS thread
+      runOnJS(handleIndexChange)(newIndex);
     },
   });
 
@@ -75,6 +98,8 @@ export default function OnboardingSlides({
         showsHorizontalScrollIndicator={false}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
+        bounces={false}
+        decelerationRate="fast"
       >
         {slides.map((slide, index) => (
           <SlideItem

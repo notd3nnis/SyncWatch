@@ -17,15 +17,15 @@ export const styles = StyleSheet.create((theme) => ({
     justifyContent: "space-around",
     alignItems: "center",
   },
-  imageFrame: {
+  imageFrame: (index) => ({
     backgroundColor: theme.color.backgroundLight,
     width: 360,
     height: 342,
     borderRadius: theme.radius.xl,
-    justifyContent: "flex-end",
+    justifyContent: index === 1 ? "flex-start" : "flex-end",
     alignItems: "center",
     paddingHorizontal: theme.spacing.l,
-  },
+  }),
   textSection: {
     gap: theme.spacing.s,
     paddingHorizontal: theme.spacing.xs,

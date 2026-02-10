@@ -29,8 +29,8 @@ const PartyCard: React.FC<PartyCardProps> = ({
 
   const getStatusLabel = () => {
     switch (status) {
-      case "Upcoming":
-        return "Upcoming";
+      case "Current":
+        return "Current";
       case "Ended":
         return "Ended";
     }
@@ -38,7 +38,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
 
   const getStatusColor = () => {
     switch (status) {
-      case "Upcoming":
+      case "Current":
         return theme.color.primary;
       case "Ended":
         return theme.color.secondary;
@@ -120,7 +120,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
                   ) : (
                     <Typography
                       variant="smallerBody"
-                      weight="medium"
+                      weight="regular"
                       color={theme.color.white}
                     >
                       {participant.name.charAt(0).toUpperCase()}
@@ -138,7 +138,7 @@ const PartyCard: React.FC<PartyCardProps> = ({
                   ]}
                 >
                   <Typography
-                    variant="smallerBody"
+                    variant="caption"
                     weight="medium"
                     align="center"
                     color={theme.color.background}

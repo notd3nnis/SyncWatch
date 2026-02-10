@@ -15,6 +15,6 @@ export interface PartyCardProps {
   movieImage: ImageSourcePropType;
   movieTitle: string;
   participants: Participant[];
-  status: "Upcoming" | "Ended";
+  status: "Current" | "Ended";
   onPress?: () => void;
 }

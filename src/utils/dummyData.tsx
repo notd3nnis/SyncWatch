@@ -1,7 +1,12 @@
 import { SlideData } from "../components/OnboardingSlide/types";
-import { NetflixLogo, OnboardingImgOne, PrimeLogo } from "../assets/svgs";
+import {
+  NetflixLogo,
+  OnboardingImgOne,
+  OnboardingImgTwo,
+  PrimeLogo,
+} from "../assets/svgs";
 import { selectProviderType } from "./types";
-import { MovieProps } from "../screens/CreateParty/types";
+import { MovieProps } from "../screens/HomePage/CreateParty/types";
 
 export const onboardingData: SlideData[] = [
   {
@@ -15,7 +20,7 @@ export const onboardingData: SlideData[] = [
     id: 2,
     title: "One tap. Everyone's in!",
     description: "Start the movie, chat live, & react in real time.",
-    image: <OnboardingImgOne />,
+    image: <OnboardingImgTwo />,
   },
 ];
 
@@ -102,7 +107,7 @@ export const moviesData: MovieProps[] = [
   },
 ];
 
-export const UpcomingParties = [
+export const CurrentParties = [
   {
     id: "1",
     title: "Three Musketeers!",
@@ -117,7 +122,7 @@ export const UpcomingParties = [
       { id: "4", name: "Lisa", color: "#FF007B" },
       { id: "5", name: "John", color: "#7130F0" },
     ],
-    status: "Upcoming" as const,
+    status: "Current" as const,
   },
   {
     id: "2",
@@ -130,7 +135,7 @@ export const UpcomingParties = [
       { id: "1", name: "Alex", color: "#7130F0" },
       { id: "2", name: "Emma", color: "#FF007B" },
     ],
-    status: "Upcoming" as const,
+    status: "Current" as const,
   },
 ];
 
@@ -147,5 +152,68 @@ export const pastParties = [
       { id: "2", name: "Jerry", color: "#0077E6" },
     ],
     status: "Ended" as const,
+  },
+];
+
+export const avatars = [
+  {
+    id: 1,
+    seed: "Snow",
+    selected: true,
+    url: require("../assets/images/Avatar1.png"),
+  },
+  {
+    id: 2,
+    seed: "Felix",
+    selected: false,
+    url: require("../assets/images/Avatar2.png"),
+  },
+  {
+    id: 3,
+    seed: "Aneka",
+    selected: false,
+    url: require("../assets/images/Avatar3.png"),
+  },
+  {
+    id: 4,
+    seed: "Bailey",
+    selected: false,
+    url: require("../assets/images/Avatar4.png"),
+  },
+  {
+    id: 5,
+    seed: "Brooklynn",
+    selected: false,
+    url: require("../assets/images/Avatar5.png"),
+  },
+  {
+    id: 6,
+    seed: "Callie",
+    selected: false,
+    url: require("../assets/images/Avatar6.png"),
+  },
+  {
+    id: 7,
+    seed: "Charlie",
+    selected: false,
+    url: require("../assets/images/Avatar7.png"),
+  },
+  {
+    id: 8,
+    seed: "Chloe",
+    selected: false,
+    url: require("../assets/images/Avatar8.png"),
+  },
+  {
+    id: 9,
+    seed: "Cleo",
+    selected: false,
+    url: require("../assets/images/Avatar9.png"),
+  },
+  {
+    id: 10,
+    seed: "Dusty",
+    selected: false,
+    url: require("../assets/images/Avatar10.png"),
   },
 ];

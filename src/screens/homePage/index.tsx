@@ -4,13 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Pressable, Image, FlatList } from "react-native";
 
 import { Stages } from "./types";
-import Header from "../../components/Header";
+import Header from "../../components/TabHeader";
 import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";
-import { MovieProps } from "../CreateParty/types";
+import { MovieProps } from "./CreateParty/types";
 import { moviesData } from "../../utils/dummyData";
-import { Details, Form, Success } from "../CreateParty";
+import { Details, Form, Success } from "./CreateParty";
 import Typography from "@/src/components/common/Typography";
 
 function Home() {

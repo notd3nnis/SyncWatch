@@ -6,7 +6,12 @@ import Typography from "../common/Typography";
 import { styles } from "./styles";
 import { ClipboardCopyProps } from "./types";
 
-const ClipboardCopy: React.FC<ClipboardCopyProps> = ({ text, style }) => {
+const ClipboardCopy: React.FC<ClipboardCopyProps> = ({
+  text,
+  style,
+  label,
+  align
+}) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -22,8 +27,8 @@ const ClipboardCopy: React.FC<ClipboardCopyProps> = ({ text, style }) => {
   return (
     <View>
       <View style={styles.label}>
-        <Typography variant="body" weight="regular">
-          Share invite code
+        <Typography variant="smallBody" weight="regular" align={align}>
+          {label}
         </Typography>
       </View>
       <View style={[styles.container, style]}>
