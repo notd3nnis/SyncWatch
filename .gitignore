@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+/mobile/node_modules/
 
 
 #dev settings
@@ -9,6 +10,7 @@ settings.json
 
 # Expo
 .expo/
+/mobile/.expo/
 dist/
 web-build/
 expo-env.d.ts
@@ -36,12 +38,19 @@ yarn-error.*
 
 # local env files
 .env*.local
+/backend/.env
+/mobile/.env*
+!/mobile/.env.example
+/backend/*firebase-adminsdk*.json
 
 # typescript
 *.tsbuildinfo
 
+# backend
+/backend/build/
+
 app-example
 
 # generated native folders
-/ios
-/android
+/mobile/ios
+/mobile/android
