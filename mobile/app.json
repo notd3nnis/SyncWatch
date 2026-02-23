@@ -48,13 +48,21 @@
       [
         "expo-font",
         {
-          "fonts": ["node_modules/@expo-google-fonts/dm-sans/"]
+          "fonts": [
+            "node_modules/@expo-google-fonts/dm-sans/"
+          ]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "abf0380d-38ba-4832-8f4f-080d737e6c41"
+      }
     }
   }
 }
