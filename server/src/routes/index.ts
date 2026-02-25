@@ -1,0 +1,22 @@
+import { Router } from "express";
+import authRoutes from "./auth.routes";
+import roomRoutes from "./room.routes";
+import participantRoutes from "./participant.routes";
+import syncRoutes from "./sync.routes";
+import chatRoutes from "./chat.routes";
+import { health } from "../controllers/health.controller";
+
+const router = Router();
+
+/** GET /api/health - Health check */
+router.get("/health", health);
+
+router.use("/auth", authRoutes);
+router.use("/rooms", roomRoutes);
+
+/** Mount room-scoped routes under /api/rooms/:roomId/... */
+router.use("/rooms/:roomId/participants", participantRoutes);
+router.use("/rooms/:roomId/sync", syncRoutes);
+router.use("/rooms/:roomId/messages", chatRoutes);
+
+export default router;

@@ -1,3 +1,4 @@
+import "@/src/utils/unistyles.config";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";

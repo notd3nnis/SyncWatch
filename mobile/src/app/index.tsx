@@ -1,5 +1,5 @@
 import React from "react";
-import Onboarding from "../screens/OnBoarding";
+import Onboarding from "../screens/onBoarding/index";
 const OnboardingPage = () => {
 
   return <Onboarding  />;
