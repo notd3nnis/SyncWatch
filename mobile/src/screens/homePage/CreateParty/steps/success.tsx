@@ -6,7 +6,7 @@ import { CreatePartyProps } from "../types";
 import Button from "@/src/components/common/Button";
 import Typography from "@/src/components/common/Typography";
 import { LeftBanner, RightBanner } from "@/src/assets/svgs";
-import ClipboardCopy from "@/src/components/ClipBoard";
+import ClipboardCopy from "@/src/components/clipBoard/index";
 
 export const Success = ({
   onClose,

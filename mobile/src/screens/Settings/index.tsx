@@ -14,7 +14,7 @@ import {
   PushNoticationIcon,
 } from "@/src/assets/svgs";
 import { useRouter } from "expo-router";
-import LogoutModal from "@/src/components/LogoutModal ";
+import LogoutModal from "@/src/components/LogoutModal";
 
 export default function SettingsScreen() {
   const [pushNotifications, setPushNotifications] = useState(true);

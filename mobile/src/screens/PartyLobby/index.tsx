@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import StackHeader from "@/src/components/StackHeader";
 import { Image, View } from "react-native";
 import Typography from "@/src/components/common/Typography";
-import ClipboardCopy from "@/src/components/ClipBoard";
+import ClipboardCopy from "@/src/components/clipBoard/index";
 import { useRouter } from "expo-router";
 import Button from "@/src/components/common/Button";
 

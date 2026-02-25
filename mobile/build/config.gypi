@@ -44,7 +44,7 @@
       "deps/cjs-module-lexer/lexer.js",
       "deps/cjs-module-lexer/dist/lexer.js",
       "deps/undici/undici.js",
-      "deps/amaro/dist/index.js"
+      "deps/amaro/dist/index"
     ],
     "node_byteorder": "little",
     "node_cctest_sources": [
@@ -127,7 +127,7 @@
       "lib/https.js",
       "lib/inspector.js",
       "lib/inspector/promises.js",
-      "lib/internal/abort_controller.js",
+      "lib/internal/abort_controller",
       "lib/internal/assert.js",
       "lib/internal/assert/assertion_error.js",
       "lib/internal/assert/myers_diff.js",
