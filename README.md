@@ -1,14 +1,29 @@
-Repository layout:
+```markdown
+# SyncWatch
 
-mobile/: Expo React Native client app
-backend/: Firebase backend workspace, docs, and extension scaffold
-Quick start:
+## Repository Structure
 
-Mobile app:
+```
+SyncWatch/
+├── mobile/       # Expo React Native client app
+└── backend/      # Firebase backend workspace, docs, and extension scaffold
+```
+
+## Quick Start
+
+### Mobile App
+
+```bash
 cd SyncWatch/mobile
 npm install
 npm run start
-Backend functions:
-cd /SyncWatch/backend/functions
+```
+
+### Backend Functions
+
+```bash
+cd SyncWatch/backend/functions
 npm install
 npm run build
+```
+```
