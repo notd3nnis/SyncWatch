@@ -9,16 +9,25 @@ import Button from "@/src/components/common/Button";
 import Typography from "@/src/components/common/Typography";
 import { avatars } from "@/src/utils/dummyData";
 import StackHeader from "@/src/components/StackHeader";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function EditProfileScreen() {
   const router = useRouter();
+  const { user } = useAuth();
 
   const [selectedAvatar, setSelectedAvatar] = useState(1);
-  const [name, setName] = useState("Snow Olohijere");
-  const [email, setEmail] = useState("snow@gmail.com");
+  const [name, setName] = useState(user?.displayName ?? "Snow Olohijere");
+  const [email, setEmail] = useState(user?.email ?? "snow@gmail.com");
 
   const handleSave = () => {
-    console.log("Save changes:", { selectedAvatar, name, email });
+    console.log("[EditProfileScreen] Save changes:", {
+      selectedAvatar,
+      name,
+      email,
+    });
+    console.log(
+      "[EditProfileScreen] NOTE: Persisting profile to backend is not implemented yet."
+    );
     router.back();
   };
 

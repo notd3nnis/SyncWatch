@@ -15,6 +15,7 @@ import {
 } from "@/src/assets/svgs";
 import { useRouter } from "expo-router";
 import LogoutModal from "@/src/components/LogoutModal";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function SettingsScreen() {
   const [pushNotifications, setPushNotifications] = useState(true);
@@ -23,6 +24,10 @@ export default function SettingsScreen() {
   const router = useRouter();
 
   const { theme } = useUnistyles();
+  const { user, isAuthenticated } = useAuth();
+
+  console.log("[SettingsScreen] render, isAuthenticated:", isAuthenticated);
+  console.log("[SettingsScreen] user:", user);
 
   const handlePress = (item: string) => {
     console.log(`Pressed: ${item}`);
@@ -50,14 +55,14 @@ export default function SettingsScreen() {
             />
           </View>
           <Typography variant="subHeading" weight="semibold">
-            Snow Olohijere
+            {user?.displayName ?? "Guest"}
           </Typography>
           <Typography
             variant="smallBody"
             weight="medium"
             color={theme.color.textMuted}
           >
-            snow@gmail.com
+            {user?.email ?? "guest@example.com"}
           </Typography>
         </View>
 

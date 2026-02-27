@@ -1,18 +1,52 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { styles } from "./styles";
 import Button from "@/src/components/common/Button";
 import { GoogleLogo, AppleLogo } from "@/src/assets/svgs";
 import OnboardingSlides from "@/src/components/OnboardingSlide";
 import { onboardingData } from "../../utils/dummyData";
+import { loginWithGoogleProvider } from "@/src/services/auth";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { login, isAuthenticated } = useAuth();
+
+  console.log("[Onboarding] render, isAuthenticated:", isAuthenticated);
+
+  const loginWithGoogle = async () => {
+    try {
+      setLoading(true);
+      const { token, user } = await loginWithGoogleProvider();
+      console.log("[Onboarding] Logged in user:", user);
+      console.log("[Onboarding] Session token:", token);
+
+      // Save in context so other screens can read the auth state
+      login({ token, user });
+
+      // Also persist to AsyncStorage for debugging / future bootstrap
+      await AsyncStorage.setItem("authToken", token);
+      await AsyncStorage.setItem("user", JSON.stringify(user));
+
+      console.log("[Onboarding] Auth data stored, navigating to select-provider");
+      router.navigate("/select-provider");
+    } catch (err: any) {
+      console.error("[Onboarding] Google login error", err);
+      Alert.alert(
+        "Login failed",
+        err?.message ?? "Unable to login with Google. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <OnboardingSlides
@@ -44,7 +78,8 @@ export default function Onboarding() {
             title="googleLogo"
             icon={<GoogleLogo width={20} height={20} />}
             variant="secondary"
-            onPress={() => router.navigate("/select-provider")}
+            disabled={loading}
+            onPress={loginWithGoogle}
           >
             Continue with Google
           </Button>
