@@ -9,6 +9,7 @@
     "backgroundColor": "#0A0A0A",
     "newArchEnabled": true,
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
       "icon": "./src/assets/images/Icons/AppleIcon.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.notd3nnis.SyncWatch",
@@ -19,13 +20,14 @@
       }
     },
     "android": {
+      "package": "com.notd3nnis.SyncWatch",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/Icons/AndroidIcon.png",
         "backgroundColor": "#0A0A0A"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.notd3nnis.SyncWatch",
       "userInterfaceStyle": "dark",
       "statusBar": {
         "barStyle": "light-content",

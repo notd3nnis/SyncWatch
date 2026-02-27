@@ -11,12 +11,17 @@ import {
   DMSans_800ExtraBold,
   DMSans_900Black,
 } from "@expo-google-fonts/dm-sans";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
+import { AuthProvider, useAuth } from "@/src/context/AuthContext";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Index() {
+function RootStack() {
+  const { isAuthenticated } = useAuth();
+  console.log("[RootStack] isAuthenticated:", isAuthenticated);
+
   const [loaded, error] = useFonts({
     "DM-Sans": DMSans_400Regular,
     "DM-Sans-Medium": DMSans_500Medium,
@@ -32,6 +37,19 @@ export default function Index() {
     }
   }, [loaded, error]);
 
+  // Configure Google Sign-In once on app start
+  useEffect(() => {
+    console.log(
+      "[RootStack] Configuring GoogleSignin with webClientId:",
+      process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID
+    );
+    GoogleSignin.configure({
+      // Set this to your Firebase Web client ID.
+      // Prefer setting via EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID env variable.
+      webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+    });
+  }, []);
+
   if (!loaded && !error) {
     return null;
   }
@@ -43,17 +61,36 @@ export default function Index() {
           headerShown: false,
         }}
       >
+        {/* Onboarding */}
         <Stack.Screen name="index" options={{ gestureEnabled: false }} />
+
+        {/* Always allow provider selection (comes right after login) */}
         <Stack.Screen
           name="select-provider"
           options={{ gestureEnabled: false }}
         />
-        <Stack.Screen
-          name="party-lobby"
-          options={{ gestureEnabled: false }}
-        />
-        <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
+
+        {/* Protected routes: only registered in navigator when authenticated */}
+        {isAuthenticated ? (
+          <Stack.Screen
+            name="party-lobby"
+            options={{ gestureEnabled: false }}
+          />
+        ) : null}
+        {isAuthenticated ? (
+          <Stack.Screen 
+            name="(tabs)" 
+            options={{ gestureEnabled: false }} />
+        ) : null}
       </Stack>
     </SafeAreaProvider>
+  );
+}
+
+export default function Index() {
+  return (
+    <AuthProvider>
+      <RootStack />
+    </AuthProvider>
   );
 }

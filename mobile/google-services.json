@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "912071689221",
+    "firebase_url": "https://syncwatch404-default-rtdb.firebaseio.com",
+    "project_id": "syncwatch404",
+    "storage_bucket": "syncwatch404.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912071689221:android:aec3bd5799e1b3c433886c",
+        "android_client_info": {
+          "package_name": "com.notd3nnis.SyncWatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912071689221-98e6r98frfvqct393rumidrfa1uppeer.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.notd3nnis.SyncWatch",
+            "certificate_hash": "fc9a2819a46ac33c828c9719ca6d60583ca46e08"
+          }
+        },
+        {
+          "client_id": "912071689221-u709vkaccs6m0hjo9ccgfmk4fou5vms6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQhh0ghi_OtBJ05Fx9OFtJ_ilu3CIJLMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912071689221-u709vkaccs6m0hjo9ccgfmk4fou5vms6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912071689221-3o0g8fe2pflv8rk88ppm8b3tk7mniv8c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.notd3nnis.SyncWatch"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
