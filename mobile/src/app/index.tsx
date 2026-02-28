@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "expo-router";
 import Onboarding from "../screens/onBoarding/index";
-const OnboardingPage = () => {
+import { useAuth } from "@/src/context/AuthContext";
 
-  return <Onboarding  />;
+const OnboardingPage = () => {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/(tabs)/home");
+    }
+  }, [isAuthenticated, router]);
+
+  if (isAuthenticated) {
+    return null;
+  }
+
+  return <Onboarding />;
 };
 
 export default OnboardingPage;

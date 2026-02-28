@@ -16,6 +16,7 @@ import {
 import { useRouter } from "expo-router";
 import LogoutModal from "@/src/components/LogoutModal";
 import { useAuth } from "@/src/context/AuthContext";
+import { logout as authLogout } from "@/src/services/auth";
 
 export default function SettingsScreen() {
   const [pushNotifications, setPushNotifications] = useState(true);
@@ -24,7 +25,7 @@ export default function SettingsScreen() {
   const router = useRouter();
 
   const { theme } = useUnistyles();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
 
   console.log("[SettingsScreen] render, isAuthenticated:", isAuthenticated);
   console.log("[SettingsScreen] user:", user);
@@ -37,8 +38,11 @@ export default function SettingsScreen() {
     setLogoutModalVisible(true);
   };
 
-  const handleLogoutConfirm = () => {
+  const handleLogoutConfirm = async () => {
     setLogoutModalVisible(false);
+    await authLogout();
+    logout();
+    router.replace("/");
   };
 
   const handleLogoutCancel = () => {

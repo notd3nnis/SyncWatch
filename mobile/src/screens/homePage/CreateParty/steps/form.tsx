@@ -27,7 +27,7 @@ export const Form = ({
             You’re about to create a Watch Party for
           </Typography>
           <Typography variant="smallBody" weight="bold">
-            “THE UNFORGIVABLE”
+            {movie?.title}
           </Typography>
         </View>
       </View>
