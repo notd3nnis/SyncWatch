@@ -1,5 +1,6 @@
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { API_BASE_URL, AUTH_LOGIN_PATH } from "@/src/config/api";
 
@@ -82,3 +83,17 @@ export async function loginWithGoogleProvider(): Promise<BackendLoginResponse> {
   }
 }
 
+/**
+ * Signs out from Firebase and Google, and clears stored auth data.
+ * Call this together with AuthContext.logout() to fully log the user out.
+ */
+export async function logout(): Promise<void> {
+  try {
+    await auth().signOut();
+    await GoogleSignin.signOut();
+    await AsyncStorage.removeItem("authToken");
+    await AsyncStorage.removeItem("user");
+  } catch (e) {
+    console.warn("[auth] logout error:", e);
+  }
+}

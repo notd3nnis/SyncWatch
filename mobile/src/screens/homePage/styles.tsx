@@ -24,6 +24,16 @@ export const styles = StyleSheet.create((theme, rt) => ({
     justifyContent: "space-between",
     marginBottom: theme.spacing.m,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: 200,
+  },
+  errorText: {
+    textAlign: "center",
+    paddingHorizontal: theme.spacing.m,
+  },
   movieCard: {
     height: 100,
     width: 190,
