@@ -62,9 +62,10 @@ export async function fetchPopularMovies(): Promise<MovieProps[]> {
 }
 
 /** Maps our app provider IDs to TMDB provider names (flatrate). */
-const TMDB_PROVIDER_NAMES: Record<string, string> = {
-  netflix: "Netflix",
-  prime: "Amazon Prime Video",
+const TMDB_PROVIDER_NAMES: Record<string, string[]> = {
+  netflix: ["Netflix"],
+  prime: ["Amazon Prime Video"],
+  youtube: ["YouTube", "YouTube Premium"],
 };
 
 type TmdbWatchProvider = {
@@ -93,7 +94,7 @@ const TMDB_FETCH_TIMEOUT_MS = 8000;
  */
 export async function isMovieOnProvider(
   movieId: number,
-  appProvider: "netflix" | "prime"
+  appProvider: "netflix" | "prime" | "youtube"
 ): Promise<boolean> {
   const apiKey = getTmdbApiKey();
   if (!apiKey) {
@@ -112,8 +113,8 @@ export async function isMovieOnProvider(
     const data = (await res.json()) as TmdbWatchProvidersResponse;
     const usProviders = data.results?.US;
     const flatrate = usProviders?.flatrate ?? [];
-    const tmdbName = TMDB_PROVIDER_NAMES[appProvider];
-    return flatrate.some((p) => p.provider_name === tmdbName);
+    const names = TMDB_PROVIDER_NAMES[appProvider] ?? [];
+    return flatrate.some((p) => names.includes(p.provider_name));
   } catch (e) {
     clearTimeout(timeoutId);
     if ((e as Error)?.name === "AbortError") {

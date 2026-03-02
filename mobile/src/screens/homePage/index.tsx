@@ -6,7 +6,6 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -23,6 +22,7 @@ import { Details, Form, Success } from "./CreateParty";
 import Typography from "@/src/components/common/Typography";
 import { useAuth } from "@/src/context/AuthContext";
 import { useUnistyles } from "react-native-unistyles";
+import AlertModal from "@/src/components/AlertModal";
 
 function Home() {
   const { theme } = useUnistyles();
@@ -39,6 +39,14 @@ function Home() {
   const [createdRoom, setCreatedRoom] = useState<import("@/src/services/rooms").Room | null>(null);
   const { user, token } = useAuth();
   const router = useRouter();
+
+  const [alertState, setAlertState] = useState<{
+    message: string;
+    primaryLabel: string;
+    onPrimary: () => void;
+    secondaryLabel?: string;
+    onSecondary?: () => void;
+  } | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -106,14 +114,16 @@ function Home() {
   const handleMoviePress = async (movie: MovieProps) => {
     const provider = user?.streamingProvider;
     if (!provider) {
-      Alert.alert(
-        "Select Streaming Provider",
-        "Please select your streaming provider in Settings first.",
-        [
-          { text: "OK" },
-          { text: "Go to Settings", onPress: () => router.push("/(tabs)/settings") },
-        ]
-      );
+      setAlertState({
+        message: "Please select your streaming provider in Settings first.",
+        primaryLabel: "Go to Settings",
+        onPrimary: () => {
+          setAlertState(null);
+          router.push("/(tabs)/settings");
+        },
+        secondaryLabel: "OK",
+        onSecondary: () => setAlertState(null),
+      });
       return;
     }
 
@@ -122,20 +132,26 @@ function Home() {
       const available = await isMovieOnProvider(movie.id, provider);
       if (!available) {
         const providerLabel = provider === "netflix" ? "Netflix" : "Prime Video";
-        Alert.alert(
-          "Not Available",
-          `"${movie.title}" isn't available on ${providerLabel}. Change your streaming provider in Settings?`,
-          [
-            { text: "Cancel" },
-            { text: "Change in Settings", onPress: () => router.push("/(tabs)/settings") },
-          ]
-        );
+        setAlertState({
+          message: `"${movie.title}" isn't available on ${providerLabel}. Change your streaming provider in Settings?`,
+          primaryLabel: "Change in Settings",
+          onPrimary: () => {
+            setAlertState(null);
+            router.push("/(tabs)/settings");
+          },
+          secondaryLabel: "Cancel",
+          onSecondary: () => setAlertState(null),
+        });
         return;
       }
       setSelectedMovie(movie);
       setModalVisible(true);
     } catch (e) {
-      Alert.alert("Error", "Could not check availability. Please try again.");
+      setAlertState({
+        message: "Could not check availability. Please try again.",
+        primaryLabel: "OK",
+        onPrimary: () => setAlertState(null),
+      });
     } finally {
       setCheckingMovieId(null);
     }
@@ -330,6 +346,14 @@ function Home() {
           />
         )}
       </MovieModal>
+      <AlertModal
+        visible={!!alertState}
+        message={alertState?.message ?? ""}
+        primaryLabel={alertState?.primaryLabel ?? ""}
+        onPrimary={alertState?.onPrimary ?? (() => setAlertState(null))}
+        secondaryLabel={alertState?.secondaryLabel}
+        onSecondary={alertState?.onSecondary}
+      />
     </SafeAreaView>
   );
 }
