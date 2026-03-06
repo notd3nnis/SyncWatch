@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useRef } from "react";
-import { View, StyleSheet, Pressable, Linking } from "react-native";
-import { useUnistyles } from "react-native-unistyles";
+import { View, Pressable, Linking } from "react-native";
+import { useUnistyles, StyleSheet } from "react-native-unistyles";
 import Typography from "@/src/components/common/Typography";
 import { updateRoomVideoUrl } from "@/src/services/rooms";
 import type { WebViewMessageEvent } from "react-native-webview";
@@ -8,6 +9,7 @@ import type { WebViewMessageEvent } from "react-native-webview";
 let WebView: any = null;
 
 try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   WebView = require("react-native-webview").WebView;
 } catch {
   // WebView native module not available (e.g. Expo Go). Use fallback.
@@ -58,17 +60,34 @@ type RoomWebViewProps = {
   onVideoUrlUpdated?: (url: string) => void;
 };
 
-function WebViewFallback({ provider }: { provider: "netflix" | "prime" | "youtube" }) {
+function WebViewFallback({
+  provider,
+}: {
+  provider: "netflix" | "prime" | "youtube";
+}) {
   const { theme } = useUnistyles();
   const url = STREAMING_BASE_URLS[provider] ?? STREAMING_BASE_URLS.netflix;
 
   return (
-    <View style={[styles.fallback, { backgroundColor: theme.color.background }]}>
-      <Typography variant="body" weight="medium" color={theme.color.textMuted} style={{ textAlign: "center", marginBottom: 8 }}>
-        In-app streaming needs a native build. If you opened this via Expo Go, that app does not include WebView.
+    <View
+      style={[styles.fallback, { backgroundColor: theme.color.background }]}
+    >
+      <Typography
+        variant="body"
+        weight="medium"
+        color={theme.color.textMuted}
+        style={{ textAlign: "center", marginBottom: 8 }}
+      >
+        In-app streaming needs a native build. If you opened this via Expo Go,
+        that app does not include WebView.
       </Typography>
-      <Typography variant="smallBody" color={theme.color.textMuted} style={{ textAlign: "center", marginBottom: 16 }}>
-        Build and install once: connect your phone, run "npx expo run:android", then open this project from the installed app (not Expo Go).
+      <Typography
+        variant="smallBody"
+        color={theme.color.textMuted}
+        style={{ textAlign: "center", marginBottom: 16 }}
+      >
+        Build and install once: connect your phone, run "npx expo run:android",
+        then open this project from the installed app (not Expo Go).
       </Typography>
       <Pressable
         style={[styles.openBtn, { backgroundColor: theme.color.primary }]}
@@ -92,7 +111,8 @@ export default function RoomWebView({
   onVideoUrlUpdated,
 }: RoomWebViewProps) {
   const webViewRef = useRef<any>(null);
-  const defaultUrl = STREAMING_BASE_URLS[provider] ?? STREAMING_BASE_URLS.netflix;
+  const defaultUrl =
+    STREAMING_BASE_URLS[provider] ?? STREAMING_BASE_URLS.netflix;
   const trimmedVideoUrl = initialVideoUrl?.trim() ?? "";
   const trimmedTitle = movieTitle?.trim() ?? "";
 
@@ -133,16 +153,24 @@ export default function RoomWebView({
 
   const handleNavigationStateChange = (navState: { url: string }) => {
     const currentUrl = navState.url;
-    console.log("[RoomWebView] navigation", { url: currentUrl, provider, isHost });
+    console.log("[RoomWebView] navigation", {
+      url: currentUrl,
+      provider,
+      isHost,
+    });
     if (isHost) {
       const isNetflixWatch = currentUrl.includes("netflix.com/watch/");
-      const isPrimeWatch = currentUrl.includes("primevideo.com") && (currentUrl.includes("/watch/") || currentUrl.includes("/gp/video/"));
+      const isPrimeWatch =
+        currentUrl.includes("primevideo.com") &&
+        (currentUrl.includes("/watch/") || currentUrl.includes("/gp/video/"));
       const isYoutubeWatch = currentUrl.includes("youtube.com/watch?v=");
       if (isNetflixWatch || isPrimeWatch || isYoutubeWatch) {
         console.log("[RoomWebView] detected watch URL, saving to room");
-        updateRoomVideoUrl(roomId, currentUrl, token).then(() => {
-          onVideoUrlUpdated?.(currentUrl);
-        }).catch(() => {});
+        updateRoomVideoUrl(roomId, currentUrl, token)
+          .then(() => {
+            onVideoUrlUpdated?.(currentUrl);
+          })
+          .catch(() => {});
       }
     }
   };
@@ -257,8 +285,11 @@ export default function RoomWebView({
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1 },
+const styles = StyleSheet.create((theme, rt) => ({
+  container: {
+    flex: 1,
+    backgroundColor: theme.color.background,
+  },
   webview: { flex: 1 },
   controlsBar: {
     position: "absolute",
@@ -285,4 +316,4 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 8,
   },
-});
+}));

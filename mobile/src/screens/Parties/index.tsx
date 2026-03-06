@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { View, FlatList, Pressable, Alert } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +14,11 @@ import Typography from "@/src/components/common/Typography";
 import Button from "@/src/components/common/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "@/src/context/AuthContext";
-import { getMyRooms, getRoomByInviteCode, type Room } from "@/src/services/rooms";
+import {
+  getMyRooms,
+  getRoomByInviteCode,
+  type Room,
+} from "@/src/services/rooms";
 import { pastParties } from "@/src/utils/dummyData";
 
 const tabOptions = [
@@ -83,7 +87,7 @@ export default function PartiesScreen() {
         .then(setRooms)
         .catch(() => setRooms([]))
         .finally(() => setLoading(false));
-    }, [token])
+    }, [token]),
   );
 
   const currentPartiesData = rooms.map(roomToPartyCardItem);
@@ -112,13 +116,20 @@ export default function PartiesScreen() {
       router.push({ pathname: "/party-lobby", params: { roomId: room.id } });
     } catch (e) {
       console.error("[Parties] handleJoinWithCode: failed", e);
-      Alert.alert("Room not found", "Invalid invite code. Please check and try again.");
+      Alert.alert(
+        "Room not found",
+        "Invalid invite code. Please check and try again.",
+      );
     } finally {
       setJoinLoading(false);
     }
   };
 
-  const renderItem = ({ item }: { item: ReturnType<typeof roomToPartyCardItem> }) => (
+  const renderItem = ({
+    item,
+  }: {
+    item: ReturnType<typeof roomToPartyCardItem>;
+  }) => (
     <PartyCard
       id={item.id}
       title={item.title}
@@ -128,7 +139,9 @@ export default function PartiesScreen() {
       movieTitle={item.movieTitle}
       participants={item.participants}
       status={item.status}
-      onPress={() => router.push({ pathname: "/party-lobby", params: { roomId: item.id } })}
+      onPress={() =>
+        router.push({ pathname: "/party-lobby", params: { roomId: item.id } })
+      }
     />
   );
 
@@ -157,7 +170,11 @@ export default function PartiesScreen() {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               {loading ? (
-                <Typography variant="body" weight="regular" color={theme.color.textMuted}>
+                <Typography
+                  variant="body"
+                  weight="regular"
+                  color={theme.color.textMuted}
+                >
                   Loading...
                 </Typography>
               ) : (
@@ -175,7 +192,18 @@ export default function PartiesScreen() {
       )}
       {selectedTab === "Ended" && (
         <FlatList
-          data={pastParties as unknown as Array<{ id: string; title: string; description: string; date: string; movieImage: any; movieTitle: string; participants: { id: string; name: string; color: string }[]; status: "Current" }>}
+          data={
+            pastParties as unknown as {
+              id: string;
+              title: string;
+              description: string;
+              date: string;
+              movieImage: any;
+              movieTitle: string;
+              participants: { id: string; name: string; color: string }[];
+              status: "Current";
+            }[]
+          }
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}

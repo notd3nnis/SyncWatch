@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native-unistyles'
+import { StyleSheet } from "react-native-unistyles";
 
 export const styles = StyleSheet.create((theme, rt) => ({
   container: {
@@ -61,6 +61,7 @@ export const styles = StyleSheet.create((theme, rt) => ({
     height: 100,
     width: 190,
     borderRadius: theme.radius.m,
+    resizeMode: "contain",
     overflow: "hidden",
   },
   movieCardDisabled: {

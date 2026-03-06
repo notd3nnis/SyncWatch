@@ -16,7 +16,11 @@ import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";
 import { MovieProps } from "../homePage/CreateParty/types";
-import { fetchPopularMoviesForProvider, fetchSearchMovies, isMovieOnProvider } from "@/src/services/tmdb";
+import {
+  fetchPopularMoviesForProvider,
+  fetchSearchMovies,
+  isMovieOnProvider,
+} from "@/src/services/tmdb";
 import { createRoom } from "@/src/services/rooms";
 import { Details, Form, Success } from "./CreateParty";
 import Typography from "@/src/components/common/Typography";
@@ -36,7 +40,9 @@ function Home() {
   const [searchResults, setSearchResults] = useState<MovieProps[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [checkingMovieId, setCheckingMovieId] = useState<number | null>(null);
-  const [createdRoom, setCreatedRoom] = useState<import("@/src/services/rooms").Room | null>(null);
+  const [createdRoom, setCreatedRoom] = useState<
+    import("@/src/services/rooms").Room | null
+  >(null);
   const { user, token } = useAuth();
   const router = useRouter();
 
@@ -133,7 +139,8 @@ function Home() {
     try {
       const available = await isMovieOnProvider(movie.id, provider);
       if (!available) {
-        const providerLabel = provider === "netflix" ? "Netflix" : "Prime Video";
+        const providerLabel =
+          provider === "netflix" ? "Netflix" : "Prime Video";
         setAlertState({
           message: `"${movie.title}" isn't available on ${providerLabel}. Change your streaming provider in Settings?`,
           primaryLabel: "Change in Settings",
@@ -148,7 +155,7 @@ function Home() {
       }
       setSelectedMovie(movie);
       setModalVisible(true);
-    } catch (e) {
+    } catch {
       setAlertState({
         message: "Could not check availability. Please try again.",
         primaryLabel: "OK",
@@ -177,7 +184,11 @@ function Home() {
    */
   const getMovieImageUrl = (movie: MovieProps | null): string | undefined => {
     if (!movie?.image) return undefined;
-    if (typeof movie.image === "object" && "uri" in movie.image && typeof movie.image.uri === "string") {
+    if (
+      typeof movie.image === "object" &&
+      "uri" in movie.image &&
+      typeof movie.image.uri === "string"
+    ) {
       return movie.image.uri;
     }
     return undefined;
@@ -193,7 +204,7 @@ function Home() {
         movieTitle: selectedMovie?.title,
         movieImageUrl: getMovieImageUrl(selectedMovie),
       },
-      token
+      token,
     );
     console.log("[Home] handleCreateRoom: success", room.id, room.inviteCode);
     setCreatedRoom(room);
