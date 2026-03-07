@@ -18,8 +18,6 @@ export default function Onboarding() {
   const router = useRouter();
   const { login, isAuthenticated } = useAuth();
 
-  console.log("[Onboarding] render, isAuthenticated:", isAuthenticated);
-
   const loginWithGoogle = async () => {
     try {
       setLoading(true);

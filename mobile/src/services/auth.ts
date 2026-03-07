@@ -9,7 +9,7 @@ type BackendUser = {
   email: string;
   displayName: string;
   avatar?: string;
-  streamingProvider?: "netflix" | "prime" | "youtube";
+  streamingProvider?: "netflix" | "prime";
 };
 
 type BackendLoginResponse = {
@@ -54,17 +54,28 @@ export async function loginWithGoogleProvider(): Promise<BackendLoginResponse> {
     const firebaseIdToken = await userCredential.user.getIdToken();
     console.log("[auth] Firebase ID token (truncated):", firebaseIdToken.slice(0, 20), "...");
 
-    console.log("[auth] Calling backend login endpoint:", `${API_BASE_URL}${AUTH_LOGIN_PATH}`);
-    const res = await fetch(`${API_BASE_URL}${AUTH_LOGIN_PATH}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idToken: firebaseIdToken,
-        provider: "google",
-      }),
-    });
+    const loginUrl = `${API_BASE_URL}${AUTH_LOGIN_PATH}`;
+    console.log("[auth] Calling backend login endpoint:", loginUrl);
+    let res: Response;
+    try {
+      res = await fetch(loginUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idToken: firebaseIdToken,
+          provider: "google",
+        }),
+      });
+    } catch (fetchErr: any) {
+      if (fetchErr?.message === "Network request failed") {
+        throw new Error(
+          "Cannot reach the server. Ensure your phone and computer are on the same Wi‑Fi, the backend is running, and EXPO_PUBLIC_API_URL is your computer's IP (e.g. http://192.168.x.x:8000)."
+        );
+      }
+      throw fetchErr;
+    }
 
     console.log("[auth] Backend response status:", res.status, res.statusText);
     if (!res.ok) {

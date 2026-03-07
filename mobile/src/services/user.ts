@@ -1,6 +1,6 @@
 import { API_BASE_URL, USERS_PATH } from "@/src/config/api";
 
-export type StreamingProvider = "netflix" | "prime" | "youtube";
+export type StreamingProvider = "netflix" | "prime";
 
 export type UserProfile = {
   id: string;

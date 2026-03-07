@@ -26,7 +26,6 @@ export default function RoomWebViewScreen() {
     if (!url) return false;
     if (p === "netflix") return url.includes("netflix.com");
     if (p === "prime") return url.includes("primevideo.com");
-    if (p === "youtube") return url.includes("youtube.com") || url.includes("youtu.be");
     return false;
   };
 

@@ -7,6 +7,9 @@ import type { WebViewMessageEvent } from "react-native-webview";
 
 let WebView: any = null;
 
+const DESKTOP_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+
 try {
   WebView = require("react-native-webview").WebView;
 } catch {
@@ -45,20 +48,19 @@ const INJECT_PLAYER_LISTENERS = `
 const STREAMING_BASE_URLS: Record<string, string> = {
   netflix: "https://www.netflix.com",
   prime: "https://www.primevideo.com",
-  youtube: "https://www.youtube.com",
 };
 
 type RoomWebViewProps = {
   roomId: string;
   token: string;
-  provider: "netflix" | "prime" | "youtube";
+  provider: "netflix" | "prime";
   isHost: boolean;
   movieTitle?: string | null;
   initialVideoUrl?: string | null;
   onVideoUrlUpdated?: (url: string) => void;
 };
 
-function WebViewFallback({ provider }: { provider: "netflix" | "prime" | "youtube" }) {
+function WebViewFallback({ provider }: { provider: "netflix" | "prime" }) {
   const { theme } = useUnistyles();
   const url = STREAMING_BASE_URLS[provider] ?? STREAMING_BASE_URLS.netflix;
 
@@ -67,7 +69,7 @@ function WebViewFallback({ provider }: { provider: "netflix" | "prime" | "youtub
       <Typography variant="body" weight="medium" color={theme.color.textMuted} style={{ textAlign: "center", marginBottom: 8 }}>
         In-app streaming needs a native build. If you opened this via Expo Go, that app does not include WebView.
       </Typography>
-      <Typography variant="smallBody" color={theme.color.textMuted} style={{ textAlign: "center", marginBottom: 16 }}>
+        <Typography variant="smallBody" color={theme.color.textMuted} style={{ textAlign: "center", marginBottom: 16 }}>
         Build and install once: connect your phone, run "npx expo run:android", then open this project from the installed app (not Expo Go).
       </Typography>
       <Pressable
@@ -75,7 +77,7 @@ function WebViewFallback({ provider }: { provider: "netflix" | "prime" | "youtub
         onPress={() => Linking.openURL(url)}
       >
         <Typography variant="body" weight="bold" color={theme.color.white}>
-          Open {provider === "netflix" ? "Netflix" : "Prime"} in browser
+          Open {provider === "netflix" ? "Netflix" : "Prime Video"} in browser
         </Typography>
       </Pressable>
     </View>
@@ -97,37 +99,15 @@ export default function RoomWebView({
   const trimmedTitle = movieTitle?.trim() ?? "";
 
   let initialUrl = defaultUrl;
-  let useYouTubeEmbed = false;
-  let youTubeVideoId: string | null = null;
 
   if (trimmedVideoUrl.length > 0) {
-    if (provider === "youtube") {
-      try {
-        const url = new URL(trimmedVideoUrl);
-        if (url.hostname.includes("youtu.be")) {
-          youTubeVideoId = url.pathname.replace("/", "");
-        } else {
-          youTubeVideoId = url.searchParams.get("v");
-        }
-      } catch {
-        youTubeVideoId = null;
-      }
-      if (youTubeVideoId) {
-        useYouTubeEmbed = true;
-      } else {
-        initialUrl = trimmedVideoUrl;
-      }
-    } else {
-      initialUrl = trimmedVideoUrl;
-    }
+    initialUrl = trimmedVideoUrl;
   } else if (trimmedTitle.length > 0) {
     const q = encodeURIComponent(trimmedTitle);
     if (provider === "netflix") {
       initialUrl = `${defaultUrl}/search?q=${q}`;
     } else if (provider === "prime") {
       initialUrl = `${defaultUrl}/search?phrase=${q}`;
-    } else if (provider === "youtube") {
-      initialUrl = `${defaultUrl}/results?search_query=${q}`;
     }
   }
 
@@ -137,12 +117,11 @@ export default function RoomWebView({
     if (isHost) {
       const isNetflixWatch = currentUrl.includes("netflix.com/watch/");
       const isPrimeWatch = currentUrl.includes("primevideo.com") && (currentUrl.includes("/watch/") || currentUrl.includes("/gp/video/"));
-      const isYoutubeWatch = currentUrl.includes("youtube.com/watch?v=");
-      if (isNetflixWatch || isPrimeWatch || isYoutubeWatch) {
+      if (isNetflixWatch || isPrimeWatch) {
         console.log("[RoomWebView] detected watch URL, saving to room");
         updateRoomVideoUrl(roomId, currentUrl, token).then(() => {
           onVideoUrlUpdated?.(currentUrl);
-        }).catch(() => {});
+        }).catch(() => { });
       }
     }
   };
@@ -200,59 +179,21 @@ export default function RoomWebView({
           </Pressable>
         </View>
       )}
-      {useYouTubeEmbed && youTubeVideoId ? (
-        <WebView
-          ref={webViewRef}
-          source={{
-            html: `<!DOCTYPE html>
-  <html>
-    <body style="margin:0;background-color:#000;">
-      <div id="player"></div>
-      <script src="https://www.youtube.com/iframe_api"></script>
-      <script>
-        var player;
-        function onYouTubeIframeAPIReady() {
-          player = new YT.Player('player', {
-            videoId: '${youTubeVideoId}',
-            playerVars: { controls: 1, rel: 0, modestBranding: 1, playsinline: 1 },
-            events: {
-              onStateChange: function(e) {
-                if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
-                  window.ReactNativeWebView.postMessage(JSON.stringify({
-                    type: 'yt_state',
-                    state: e.data,
-                    currentTime: player.getCurrentTime(),
-                    duration: player.getDuration()
-                  }));
-                }
-              }
-            }
-          });
-        }
-      </script>
-    </body>
-  </html>`,
-          }}
-          onMessage={handleMessage}
-          style={styles.webview}
-          javaScriptEnabled
-          domStorageEnabled
-          startInLoadingState
-        />
-      ) : (
-        <WebView
-          ref={webViewRef}
-          source={{ uri: initialUrl }}
-          injectedJavaScript={INJECT_PLAYER_LISTENERS}
-          onNavigationStateChange={handleNavigationStateChange}
-          onMessage={handleMessage}
-          style={styles.webview}
-          javaScriptEnabled
-          domStorageEnabled
-          startInLoadingState
-          scalesPageToFit
-        />
-      )}
+      <WebView
+        ref={webViewRef}
+        source={{ uri: initialUrl }}
+        injectedJavaScript={INJECT_PLAYER_LISTENERS}
+        onNavigationStateChange={handleNavigationStateChange}
+        onMessage={handleMessage}
+        style={styles.webview}
+        javaScriptEnabled
+        domStorageEnabled
+        startInLoadingState
+        scalesPageToFit
+        setSupportMultipleWindows={false}
+        userAgent={provider === "netflix" ? DESKTOP_USER_AGENT : undefined}
+        allowProtectedContent={true}
+      />
     </View>
   );
 }

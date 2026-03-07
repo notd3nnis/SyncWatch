@@ -65,7 +65,6 @@ export async function fetchPopularMovies(): Promise<MovieProps[]> {
 const TMDB_DISCOVER_PROVIDER_IDS: Partial<Record<StreamingProvider, string>> = {
   netflix: "8",
   prime: "9|119",
-  // youtube: no official flatrate provider id; skip discover filter
 };
 
 export async function fetchPopularMoviesForProvider(
@@ -99,7 +98,6 @@ export async function fetchPopularMoviesForProvider(
 const TMDB_PROVIDER_NAMES: Record<string, string[]> = {
   netflix: ["Netflix"],
   prime: ["Amazon Prime Video"],
-  youtube: ["YouTube", "YouTube Premium"],
 };
 
 type TmdbWatchProvider = {
@@ -128,7 +126,7 @@ const TMDB_FETCH_TIMEOUT_MS = 8000;
  */
 export async function isMovieOnProvider(
   movieId: number,
-  appProvider: "netflix" | "prime" | "youtube"
+  appProvider: "netflix" | "prime"
 ): Promise<boolean> {
   const apiKey = getTmdbApiKey();
   if (!apiKey) {
