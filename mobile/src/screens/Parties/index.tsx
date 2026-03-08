@@ -49,6 +49,7 @@ function roomToPartyCardItem(room: Room): PartyCardItem {
     movieTitle: room.movieTitle || "Movie",
     participants: [] as { id: string; name: string; color: string }[],
     status: "Current" as const,
+    isPlaying: room.isPlaying ?? false,
   };
 }
 
@@ -135,7 +136,8 @@ export default function PartiesScreen() {
       movieTitle={item.movieTitle}
       participants={item.participants}
       status={item.status}
-      onPress={() => router.push({ pathname: "/party-lobby", params: { roomId: item.id } })}
+      isPlaying={item.isPlaying}
+      onPress={item.status === "Ended" ? undefined : () => router.push({ pathname: "/party-lobby", params: { roomId: item.id } })}
     />
   );
 
