@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Alert } from "react-native";
 import { styles } from "./styles";
-import { Pressable, View } from "react-native";
+import { Pressable, View, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AppLogo } from "@/src/assets/svgs";
 import Button from "@/src/components/common/Button";
@@ -19,20 +18,32 @@ const SelectProvider = () => {
 
   useEffect(() => {
     if (user?.streamingProvider) {
-      const match = selectProviderData.find((p) => p.providerId === user.streamingProvider);
+      const match = selectProviderData.find(
+        (p) => p.providerId === user.streamingProvider,
+      );
       if (match) setSelectedId(match.id);
     }
   }, [user?.streamingProvider]);
 
-  console.log("[SelectProvider] render", { selectedId, loading, streamingProvider: user?.streamingProvider });
+  console.log("[SelectProvider] render", {
+    selectedId,
+    loading,
+    streamingProvider: user?.streamingProvider,
+  });
 
   const handleContinue = async () => {
     const selected = selectProviderData.find((p) => p.id === selectedId);
     if (!selected || !token) {
-      console.log("[SelectProvider] handleContinue: no selection or token", { selectedId, hasToken: !!token });
+      console.log("[SelectProvider] handleContinue: no selection or token", {
+        selectedId,
+        hasToken: !!token,
+      });
       return;
     }
-    console.log("[SelectProvider] handleContinue: saving provider", selected.providerId);
+    console.log(
+      "[SelectProvider] handleContinue: saving provider",
+      selected.providerId,
+    );
     setLoading(true);
     try {
       await updateStreamingProvider(token, selected.providerId);

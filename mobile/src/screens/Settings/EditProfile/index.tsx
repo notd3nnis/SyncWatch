@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Pressable, ScrollView, Image } from "react-native";
+import { View, Pressable, ScrollView, Image, Alert } from "react-native";
 
 import Input from "@/src/components/common/Input";
 import Button from "@/src/components/common/Button";
@@ -11,7 +11,6 @@ import { avatars } from "@/src/utils/dummyData";
 import StackHeader from "@/src/components/StackHeader";
 import { useAuth } from "@/src/context/AuthContext";
 import { updateProfile } from "@/src/services/user";
-import { Alert } from "react-native";
 
 export default function EditProfileScreen() {
   const router = useRouter();
@@ -119,7 +118,12 @@ export default function EditProfileScreen() {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title="save changes" variant="primary" onPress={handleSave} disabled={saving}>
+          <Button
+            title="save changes"
+            variant="primary"
+            onPress={handleSave}
+            disabled={saving}
+          >
             {saving ? "Saving..." : "Save changes"}
           </Button>
         </View>
