@@ -21,7 +21,7 @@
     },
     "android": {
       "package": "com.notd3nnis.SyncWatch",
-      "googleServicesFile": "./android/app/google-services.json",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/Icons/AndroidIcon.png",
         "backgroundColor": "#0A0A0A"
