@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
 
 import { Stages } from "./types";
 import Header from "../../components/TabHeader";
@@ -16,18 +15,29 @@ import { SearchIcon } from "@/src/assets/svgs";
 import MovieModal from "@/src/components/Modal";
 import Input from "@/src/components/common/Input";
 import { MovieProps } from "../homePage/CreateParty/types";
-import { fetchYouTubeHomepage, searchYouTubeVideos } from "@/src/services/youtube";
+import {
+  fetchYouTubeHomepage,
+  searchYouTubeVideos,
+} from "@/src/services/youtube";
 import { createRoom } from "@/src/services/rooms";
 import { Details, Form, Success } from "./CreateParty";
 import Typography from "@/src/components/common/Typography";
 import { useAuth } from "@/src/context/AuthContext";
 import { useUnistyles } from "react-native-unistyles";
 
-function youtubeToMovieProps(v: { id: string; title: string; thumbnailUri: string; description: string; videoId: string }): MovieProps {
+function youtubeToMovieProps(v: {
+  id: string;
+  title: string;
+  thumbnailUri: string;
+  description: string;
+  videoId: string;
+}): MovieProps {
   return {
     id: v.id,
     title: v.title,
-    image: v.thumbnailUri ? { uri: v.thumbnailUri } : require("@/src/assets/images/image1.jpg"),
+    image: v.thumbnailUri
+      ? { uri: v.thumbnailUri }
+      : require("@/src/assets/images/image1.jpg"),
     description: v.description || undefined,
     embedUrl: v.videoId,
   };
@@ -39,19 +49,22 @@ function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<MovieProps | null>(null);
   const [movies, setMovies] = useState<MovieProps[]>([]);
-  const [nextPageToken, setNextPageToken] = useState<string | undefined>(undefined);
+  const [nextPageToken, setNextPageToken] = useState<string | undefined>(
+    undefined,
+  );
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<MovieProps[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
+
   const [createdRoom, setCreatedRoom] = useState<
     import("@/src/services/rooms").Room | null
   >(null);
   const { user, token } = useAuth();
-  const router = useRouter();
 
   useEffect(() => {
     let cancelled = false;
@@ -142,7 +155,9 @@ function Home() {
 
   const handleCreateRoom = async (name: string, description: string) => {
     if (!token) throw new Error("You must be logged in to create a party.");
-    const videoId = selectedMovie?.embedUrl ?? (typeof selectedMovie?.id === "string" ? selectedMovie.id : undefined);
+    const videoId =
+      selectedMovie?.embedUrl ??
+      (typeof selectedMovie?.id === "string" ? selectedMovie.id : undefined);
     const room = await createRoom(
       {
         name,
@@ -158,12 +173,13 @@ function Home() {
   };
 
   const renderItem = ({ item }: { item: MovieProps }) => (
-    <Pressable
-      style={styles.movieCard}
-      onPress={() => handleMoviePress(item)}
-    >
+    <Pressable style={styles.movieCard} onPress={() => handleMoviePress(item)}>
       <Image
-        source={typeof item.image === "object" && "uri" in item.image ? item.image : require("@/src/assets/images/image1.jpg")}
+        source={
+          typeof item.image === "object" && "uri" in item.image
+            ? item.image
+            : require("@/src/assets/images/image1.jpg")
+        }
         style={styles.movieImage}
         resizeMode="cover"
       />

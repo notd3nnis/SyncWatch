@@ -78,10 +78,7 @@ export default function PartiesScreen() {
         return;
       }
       setLoading(true);
-      Promise.all([
-        getMyRooms(token, false),
-        getMyRooms(token, true),
-      ])
+      Promise.all([getMyRooms(token, false), getMyRooms(token, true)])
         .then(([current, past]) => {
           setRooms(current);
           setPastRooms(past);
@@ -108,28 +105,22 @@ export default function PartiesScreen() {
     setModalVisible(true);
   };
 
-  const handleJoinWithCode = async () => {
+  const handleJoinPartyWithCode = async () => {
     const code = joinCode.trim();
     if (!code || !token) {
-      console.log("[Parties] handleJoinWithCode: no code or token", {
-        hasCode: code.length > 0,
-        hasToken: !!token,
-      });
-      if (!token) {
-        Alert.alert("Session expired", "Please sign in again to join a party.");
-      }
+      console.log("[Parties] handleJoinPartyWithCode: no code or token");
       return;
     }
-    console.log("[Parties] handleJoinWithCode: looking up", code);
+    console.log("[Parties] handleJoinPartyWithCode: looking up", code);
     setJoinLoading(true);
     try {
       const room = await getRoomByInviteCode(code, token);
       setModalVisible(false);
       setJoinCode("");
-      console.log("[Parties] handleJoinWithCode: found room", room.id);
+      console.log("[Parties] handleJoinPartyWithCode: found room", room.id);
       router.push({ pathname: "/party-lobby", params: { roomId: room.id } });
     } catch (e) {
-      console.error("[Parties] handleJoinWithCode: failed", e);
+      console.error("[Parties] handleJoinPartyWithCode: failed", e);
       Alert.alert(
         "Room not found",
         "Invalid invite code. Please check and try again.",
@@ -214,11 +205,19 @@ export default function PartiesScreen() {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               {loading ? (
-                <Typography variant="body" weight="regular" color={theme.color.textMuted}>
+                <Typography
+                  variant="body"
+                  weight="regular"
+                  color={theme.color.textMuted}
+                >
                   Loading...
                 </Typography>
               ) : (
-                <Typography variant="body" weight="regular" color={theme.color.textMuted}>
+                <Typography
+                  variant="body"
+                  weight="regular"
+                  color={theme.color.textMuted}
+                >
                   No past parties yet
                 </Typography>
               )}
@@ -265,7 +264,7 @@ export default function PartiesScreen() {
           />
           <View style={styles.ButtonWrapper}>
             <Button
-              onPress={handleJoinWithCode}
+              onPress={handleJoinPartyWithCode}
               title="Go to party"
               disabled={!joinCode.trim() || joinLoading}
             >

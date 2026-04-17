@@ -33,7 +33,7 @@ export const selectProviderData: selectProviderType[] = [
   {
     id: 2,
     logo: <PrimeLogo />,
-    title: "Prime Video",
+    title: "YouTube",
     providerId: "prime",
   },
 ];
