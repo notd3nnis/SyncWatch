@@ -22,7 +22,7 @@ export const styles = StyleSheet.create((theme, rt) => ({
   stickyButtonContainer: {
     position: "absolute",
     right: 20,
-    bottom: 100,
+    bottom: 120,
   },
   joinButton: {
     flexDirection: "row",
