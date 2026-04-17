@@ -84,11 +84,22 @@ const PartyLobbyScreen = () => {
       clearInterval(heartbeat);
       leaveWaitingRoom(roomId, token).catch(() => {});
     };
-  }, [roomId, token, room?.hostId, room?.isCompleted, room?.hostSessionActive, user?.id]);
+  }, [
+    roomId,
+    token,
+    room?.hostId,
+    room?.isCompleted,
+    room?.hostSessionActive,
+    user?.id,
+    room,
+  ]);
 
   const handleGoToParty = () => {
     console.log("[PartyLobby] Go to Party pressed", roomId);
-    router.push({ pathname: "/room-webview", params: { roomId: roomId ?? "" } });
+    router.push({
+      pathname: "/room-webview",
+      params: { roomId: roomId ?? "" },
+    });
   };
 
   if (loading) {
@@ -123,7 +134,9 @@ const PartyLobbyScreen = () => {
   const isHostUser = user?.id === room.hostId;
   const hostLive = room.hostSessionActive === true;
   const visitorCanEnter = isHostUser || hostLive;
-  const waitingUsersExcludingSelf = waitingUsers.filter((w) => w.userId !== user?.id);
+  const waitingUsersExcludingSelf = waitingUsers.filter(
+    (w) => w.userId !== user?.id,
+  );
   const visibleWaiting = waitingUsersExcludingSelf.slice(0, 4);
   const waitingExtra = waitingUsersExcludingSelf.length - visibleWaiting.length;
 
@@ -144,7 +157,11 @@ const PartyLobbyScreen = () => {
           </View>
           <View style={styles.content}>
             <View style={styles.imgWrapper}>
-              <Image style={styles.img} source={movieImage} resizeMode="cover" />
+              <Image
+                style={styles.img}
+                source={movieImage}
+                resizeMode="cover"
+              />
             </View>
             {!isEnded && (
               <View style={styles.clipBoard}>
@@ -164,12 +181,27 @@ const PartyLobbyScreen = () => {
               <View style={styles.waitingRow}>
                 <View style={styles.waitingAvatars}>
                   {visibleWaiting.map((w, idx) => (
-                    <View key={w.userId} style={[styles.waitingAvatarWrap, { marginLeft: idx === 0 ? 0 : -10 }]}>
-                      <Image source={getAvatarSource(w.avatar)} style={styles.waitingAvatar} />
+                    <View
+                      key={w.userId}
+                      style={[
+                        styles.waitingAvatarWrap,
+                        { marginLeft: idx === 0 ? 0 : -10 },
+                      ]}
+                    >
+                      <Image
+                        source={getAvatarSource(w.avatar)}
+                        style={styles.waitingAvatar}
+                      />
                     </View>
                   ))}
                   {waitingExtra > 0 && (
-                    <View style={[styles.waitingAvatarWrap, styles.waitingExtraBadge, { marginLeft: -10 }]}>
+                    <View
+                      style={[
+                        styles.waitingAvatarWrap,
+                        styles.waitingExtraBadge,
+                        { marginLeft: -10 },
+                      ]}
+                    >
                       <Typography variant="caption" weight="bold" color="#fff">
                         +{waitingExtra}
                       </Typography>
@@ -182,7 +214,11 @@ const PartyLobbyScreen = () => {
               </View>
             )}
             {!isHostUser && !hostLive && (
-              <Typography variant="smallBody" weight="medium" style={{ marginBottom: 8, textAlign: "center" }}>
+              <Typography
+                variant="smallBody"
+                weight="medium"
+                style={{ marginBottom: 8, textAlign: "center" }}
+              >
                 Waiting for the host to open the watch room…
               </Typography>
             )}
@@ -219,7 +255,7 @@ const styles = StyleSheet.create((theme) => ({
   sections: {
     flex: 4.5,
     alignItems: "center",
-    justifyContent:"space-between"
+    justifyContent: "space-between",
   },
   description: {
     alignItems: "center",
@@ -259,8 +295,8 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: "center",
   },
   footer: {
-    width:"100%",
-    marginBottom:theme.spacing.l
+    width: "100%",
+    marginBottom: theme.spacing.l,
   },
   waitingRow: {
     flexDirection: "row",
